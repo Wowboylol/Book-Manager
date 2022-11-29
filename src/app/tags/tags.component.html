@@ -2,8 +2,16 @@
     <article class="col-xs-10">
         <app-tag-edit></app-tag-edit>
         <hr>
-        <ul class="list-group">
+        <!-- <ul class="list-group">
             <a class="list-group-item list-group-item-action" *ngFor="let tag of tags">{{tag.name}} ({{tag.amount}})</a>
-        </ul>
+        </ul> -->
+    </article>
+</section>
+
+<section class="row">
+    <article class="col-xs-10">
+        <button type="button" class="btn btn-secondary ms-2" *ngFor="let tag of tags">
+            {{tag.name}} <span class="badge bg-light text-muted">{{tag.amount}}</span>
+        </button>
     </article>
 </section>
