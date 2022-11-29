@@ -9,9 +9,12 @@ import { Book } from './book.model';
 
 export class BooksComponent implements OnInit 
 {
-	public bookDetails:Book;
+	private _bookDetails:Book;
 
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	public get bookDetails():Book { return this._bookDetails; }
+	public set bookDetails(selection:Book) { this._bookDetails = selection; }
 }
