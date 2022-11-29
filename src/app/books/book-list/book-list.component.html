@@ -4,21 +4,23 @@
     </article>
 </section>
 
+<hr>
+
 <section class="row">
     <article class="col-xs-12">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action clearfix">
+            <a href="#" class="list-group-item list-group-item-action clearfix" *ngFor="let book of books">
                 <aside class="float-start">
-                    <h4>Book Name</h4>
-                    <p class="fw-bold">Rating: 4/5</p>
-                    <p>Description</p>
+                    <h4>{{book.name}}</h4>
+                    <p class="fw-bold">Rating: {{book.rating}}/5</p>
+                    <p>{{book.description}}</p>
                 </aside>
-
+            
                 <span class="float-end">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg" class="img-responsive" style="max-height: 200px;">
+                    <img [src]="book.imagePath" alt="illustration of {{book.name}}" class="img-fluid">
                 </span>
             </a>
-            <app-book-item></app-book-item>
         </div>
+        <app-book-item></app-book-item>
     </article>
 </section>

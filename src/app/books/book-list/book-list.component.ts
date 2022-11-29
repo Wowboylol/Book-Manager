@@ -13,7 +13,10 @@ export class BookListComponent implements OnInit
 	
 	public constructor() 
 	{ 
-		this._books = [new Book("Test", "Placeholder", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 4)];
+		this._books = [
+			new Book("Test", "Placeholder", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 4),
+			new Book("Test", "Placeholder", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 5)
+		];
 	}
 
 	ngOnInit(): void 
