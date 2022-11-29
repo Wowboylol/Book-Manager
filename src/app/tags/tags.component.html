@@ -3,7 +3,7 @@
         <app-tag-edit></app-tag-edit>
         <hr>
         <ul class="list-group">
-            <a class="list-group-item list-group-item-action"></a>
+            <a class="list-group-item list-group-item-action" *ngFor="let tag of tags">{{tag.name}} ({{tag.amount}})</a>
         </ul>
     </article>
 </section>

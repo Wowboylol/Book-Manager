@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from '../shared/tag.model';
 
 @Component({
 	selector: 'app-tags',
@@ -8,11 +9,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class TagsComponent implements OnInit 
 {
-	private _tags = [];
+	private _tags:Tag[];
 
-	constructor() 
+	public constructor() 
 	{
-
+		this._tags = [new Tag("Tester", 2), new Tag("Testy", 4)];
 	}
 
 	ngOnInit(): void 
@@ -21,6 +22,5 @@ export class TagsComponent implements OnInit
 	}
 
 	// Getters
-	public get tags() { return this._tags; }
-
+	public get tags():Tag[] { return this._tags; }
 }
