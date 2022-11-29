@@ -7,11 +7,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 export class HeaderComponent
 {
-    @Output() headerSelected = new EventEmitter<string>();
+    @Output() selectedHeader = new EventEmitter<string>();
 	public collapsed = true;
 
     public onSelect(selection:string)
     {
-        this.headerSelected.emit(selection);
+        this.selectedHeader.emit(selection);
     }
 }
