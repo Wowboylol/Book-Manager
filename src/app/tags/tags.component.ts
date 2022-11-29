@@ -8,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
 
 export class TagsComponent implements OnInit 
 {
+	private _tags = [];
 
-	constructor() { }
+	constructor() 
+	{
 
-	ngOnInit(): void {
 	}
+
+	ngOnInit(): void 
+	{
+
+	}
+
+	// Getters
+	public get tags() { return this._tags; }
 
 }
