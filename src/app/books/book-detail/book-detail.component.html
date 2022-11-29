@@ -1,13 +1,13 @@
 <section class="row">
     <article class="col-xs-12">
-        <img src="" alt="" class="image-fluid">
+        <img [src]="selectedBook.imagePath" alt="illustration of {{selectedBook.name}}" class="image-fluid">
 
     </article>
 </section>
 
 <section class="row">
     <article class="col-xs-12">
-        <h2>Book name</h2>
+        <h2>{{selectedBook.name}}</h2>
     </article>
 </section>
 
@@ -26,7 +26,8 @@
 
 <section class="row">
     <article class="col-xs-12">
-        <p class="fw-bold">Description:</p>
+        <p class="fw-bold">Link:</p>
+        <p>{{selectedBook.description}}</p>
     </article>
 </section>
 

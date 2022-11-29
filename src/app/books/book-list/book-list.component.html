@@ -11,7 +11,8 @@
         <div class="list-group">
             <app-book-item 
                 *ngFor="let bookElement of books" 
-                [book]="bookElement">
+                [book]="bookElement"
+                (selectedBook)="onChangeBook($event)">
             </app-book-item>
         </div>
     </article>

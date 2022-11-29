@@ -1,4 +1,4 @@
-<a href="#" class="list-group-item list-group-item-action clearfix">
+<a href="#" class="list-group-item list-group-item-action clearfix" (click)="onSelected(book)">
     <aside class="float-start">
         <h4>{{book.name}}</h4>
         <span class="fa fa-star" *ngFor="let star of stars" [ngClass]="{'checked':book.rating > star}"></span>

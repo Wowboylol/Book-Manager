@@ -1,9 +1,9 @@
 <section class="row">
     <article class="col-md-5">
-        <app-book-list></app-book-list>
+        <app-book-list (changedBook)="bookDetails=$event"></app-book-list>
     </article>
     
     <article class="col-md-7">
-        <app-book-detail></app-book-detail>
+        <app-book-detail [selectedBook]="bookDetails"></app-book-detail>
     </article>
 </section>

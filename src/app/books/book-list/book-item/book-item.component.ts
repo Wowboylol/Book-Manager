@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from '../../book.model';
 
 @Component({
@@ -10,6 +10,7 @@ import { Book } from '../../book.model';
 export class BookItemComponent implements OnInit 
 {
 	@Input() book:Book;
+	@Output() selectedBook = new EventEmitter<Book>();
 	private _stars:number[];
 
 	public constructor() 
@@ -17,11 +18,12 @@ export class BookItemComponent implements OnInit
 		this._stars = [0, 1, 2, 3, 4];
 	}
 
-	ngOnInit(): void 
-	{
+	ngOnInit(): void {}
 
+	public onSelected(selection:Book)
+	{
+		this.selectedBook.emit(selection);
 	}
 
-	// Getters
 	public get stars():number[] { return this._stars; }
 }

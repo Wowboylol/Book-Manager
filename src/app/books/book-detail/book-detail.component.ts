@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Book } from '../book.model';
 
 @Component({
 	selector: 'app-book-detail',
@@ -8,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
 
 export class BookDetailComponent implements OnInit 
 {
+	@Input() selectedBook:Book;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void {
-	}
-
+	ngOnInit(): void {}
 }
