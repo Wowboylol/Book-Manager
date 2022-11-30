@@ -12,6 +12,7 @@ import { TagEditComponent } from './tags/tag-edit/tag-edit.component';
 import { TagService } from './tags/tags.service';
 import { SearchComponent } from './search/search.component';
 import { SearchEditComponent } from './search/search-edit/search-edit.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,10 @@ import { SearchEditComponent } from './search/search-edit/search-edit.component'
 	imports: [
 		BrowserModule
 	],
-	providers: [TagService],
+	providers: [
+		TagService,
+		SearchService
+	],
 	bootstrap: [AppComponent]
 })
 

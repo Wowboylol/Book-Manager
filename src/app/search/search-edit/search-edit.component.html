@@ -1,1 +1,28 @@
-<p>search-edit works!</p>
+<section class="row g-3">
+    <form class="col-sm-7">
+        <input type="text" id="search-bar" class="form-control" placeholder="Search" #searchQuery>
+    </form>
+
+    <form class="col-sm-2">
+        <select class="form-select" #searchField>
+            <option selected>Search field...</option>
+            <option value="1">Name</option>
+            <option value="2">Author</option>
+            <option value="3">Tags</option>
+        </select>
+    </form>
+
+    <form class="col-sm-2">
+        <select class="form-select" #searchFilter>
+            <option selected>Filter by...</option>
+            <option value="1">Recently added &uarr;</option>
+            <option value="2">Recently added &darr;</option>
+            <option value="3">Rating &uarr;</option>
+            <option value="4">Rating &darr;</option>
+        </select>
+    </form>
+
+    <form class="col-sm-1">
+        <button type="button" class="btn btn-warning" (click)="onSubmitSearch()">Submit</button>
+    </form>
+</section>
