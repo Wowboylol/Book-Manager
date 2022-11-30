@@ -10,7 +10,7 @@ import { Book } from '../../book.model';
 export class BookItemComponent implements OnInit 
 {
 	@Input() book:Book;
-	@Output() selectedBook = new EventEmitter<Book>();
+	@Output() selectedBook = new EventEmitter<void>();
 	private _stars:number[];
 
 	public constructor() 
@@ -20,9 +20,9 @@ export class BookItemComponent implements OnInit
 
 	ngOnInit(): void {}
 
-	public onSelected(selection:Book)
+	public onSelected()
 	{
-		this.selectedBook.emit(selection);
+		this.selectedBook.emit();
 	}
 
 	public get stars():number[] { return this._stars; }

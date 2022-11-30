@@ -12,7 +12,7 @@
             <app-book-item 
                 *ngFor="let bookElement of books" 
                 [book]="bookElement"
-                (selectedBook)="onChangeBook($event)">
+                (selectedBook)="onChangeBook(bookElement)">
             </app-book-item>
         </div>
     </article>

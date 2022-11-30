@@ -4,6 +4,12 @@
     </article>
     
     <article class="col-md-7 ps-4">
-        <app-book-detail [selectedBook]="bookDetails"></app-book-detail>
+        <app-book-detail 
+            *ngIf="bookDetails; else infoText"
+            [selectedBook]="bookDetails">
+        </app-book-detail>
+        <ng-template #infoText>
+            <p>Please select a book!</p>
+        </ng-template>
     </article>
 </section>
