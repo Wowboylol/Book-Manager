@@ -9,9 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TagEditComponent implements OnInit 
 {
 
-	constructor() { }
+	public constructor() {}
 
-	ngOnInit(): void {
-	}
-
+	ngOnInit(): void {}
 }
