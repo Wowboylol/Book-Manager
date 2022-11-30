@@ -13,4 +13,6 @@ export class DropdownDirective
     {
         this.isOpen = !this.isOpen;
     }
+
+    // ADD SELECTOR appDropdown attribute to html element to use!
 }
