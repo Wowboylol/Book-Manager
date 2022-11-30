@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Tag } from 'src/app/shared/tag.model';
+import { TagService } from 'src/app/tags/tags.service';
 import { Book } from '../book.model';
 
 @Component({
@@ -10,8 +12,17 @@ import { Book } from '../book.model';
 export class BookDetailComponent implements OnInit 
 {
 	@Input() selectedBook:Book;
+	private _tagService:TagService;
 
-	constructor() {}
+	public constructor(tagService:TagService) 
+	{
+		this._tagService = tagService;
+	}
 
 	ngOnInit(): void {}
+
+	public exportTags(tags:Tag[])
+	{
+		this._tagService.addMultipleTags(tags);
+	}
 }

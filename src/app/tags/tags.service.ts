@@ -18,6 +18,24 @@ export class TagService
         this.tagChange.emit(this.tags.slice());
     }
 
+    public addMultipleTags(tags:Tag[])
+    {
+        for(let i=0; i<tags.length; i++)
+        {
+            const searchName = tags[i].name;
+            let nameFound = false;
+
+            for(let j=0; j<this.tags.length; j++)
+            {
+                if(searchName == this.tags[j].name)
+                    nameFound = true;
+            }
+
+            if(nameFound == false)
+                this.addTag(tags[i]);
+        }
+    }
+
     public getTags():Tag[] { return this.tags.slice(); }
     public getTagInput():Tag { return this.tagInput; }
 }
