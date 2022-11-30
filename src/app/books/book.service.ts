@@ -1,4 +1,5 @@
 import { EventEmitter } from "@angular/core";
+import { Tag } from "../shared/tag.model";
 import { Book } from "./book.model";
 
 export class BookService
@@ -10,23 +11,29 @@ export class BookService
 	{ 
 		this.books = [
 			new Book(
-				"Book1", 
-				"Placeholder description 1", 
-				"Placeholder link 1", 
+				"Dive Into Design Patterns", 
+				"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
+				"https://refactoring.guru/design-patterns/book", 
 				"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-				4, []),
+			 	4, [
+					new Tag("educational", 0)
+			 	]),
 			new Book(
-				"Book2", 
-				"Placeholder description 2", 
-				"Placeholder link 2", 
+				"Dive Into Design Patterns", 
+				"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
+				"https://refactoring.guru/design-patterns/book", 
 				"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-				5, []),
+				4, [
+					new Tag("educational", 0)
+				]),
 			new Book(
-				"Book3", 
-				"Placeholder description 3", 
-				"Placeholder link 3", 
+				"Dive Into Design Patterns", 
+				"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
+				"https://refactoring.guru/design-patterns/book", 
 				"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-				3, [])
+			 	4, [
+					new Tag("educational", 0)
+			 	])
 		];
 	}
 
