@@ -10,6 +10,8 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
 import { TagEditComponent } from './tags/tag-edit/tag-edit.component';
 import { TagService } from './tags/tags.service';
+import { SearchComponent } from './search/search.component';
+import { SearchEditComponent } from './search/search-edit/search-edit.component';
 
 @NgModule({
 	declarations: [
@@ -20,7 +22,9 @@ import { TagService } from './tags/tags.service';
 		BookListComponent,
 		BookDetailComponent,
 		BookItemComponent,
-		TagEditComponent
+		TagEditComponent,
+		SearchComponent,
+		SearchEditComponent
 	],
 	imports: [
 		BrowserModule
