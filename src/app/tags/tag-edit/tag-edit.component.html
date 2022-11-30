@@ -4,13 +4,13 @@
             <aside class="row">
                 <fieldset class="col-sm-4">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control">
+                    <input type="text" id="name" class="form-control" #nameInput>
                 </fieldset>
             </aside>
 
             <aside class="row mt-3">
                 <footer class="col-xs-12">
-                    <button type="submit" class="btn btn-warning">Add</button>
+                    <button type="button" class="btn btn-warning" (click)="onAddTag()">Add</button>
                     <button type="button" class="btn btn-danger ms-2">Delete</button>
                     <button type="button" class="btn btn-secondary ms-2" title="Search for books with this tag">Search</button>
                     <button type="button" class="btn btn-secondary ms-2">Clear</button>

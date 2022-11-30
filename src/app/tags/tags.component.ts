@@ -16,11 +16,12 @@ export class TagsComponent implements OnInit
 		this._tags = [new Tag("Tester", 2), new Tag("Testy", 4)];
 	}
 
-	ngOnInit(): void 
-	{
+	ngOnInit(): void {}
 
+	public onTagAdded(tag:Tag)
+	{
+		this._tags.unshift(tag);
 	}
 
-	// Getters
 	public get tags():Tag[] { return this._tags; }
 }
