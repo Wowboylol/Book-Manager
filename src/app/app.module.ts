@@ -9,6 +9,7 @@ import { BookListComponent } from './books/book-list/book-list.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
 import { TagEditComponent } from './tags/tag-edit/tag-edit.component';
+import { TagService } from './tags/tags.service';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,7 @@ import { TagEditComponent } from './tags/tag-edit/tag-edit.component';
 	imports: [
 		BrowserModule
 	],
-	providers: [],
+	providers: [TagService],
 	bootstrap: [AppComponent]
 })
 

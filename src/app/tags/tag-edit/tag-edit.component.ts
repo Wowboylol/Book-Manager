@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild, Output } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Tag } from 'src/app/shared/tag.model';
+import { TagService } from '../tags.service';
 
 @Component({
 	selector: 'app-tag-edit',
@@ -10,9 +11,12 @@ import { Tag } from 'src/app/shared/tag.model';
 export class TagEditComponent implements OnInit 
 {
 	@ViewChild('nameInput') nameInputRef:ElementRef;
-	@Output() tagAdded = new EventEmitter<Tag>();
+	private _tagService:TagService;
 
-	public constructor() {}
+	public constructor(tagService:TagService) 
+	{
+		this._tagService = tagService;
+	}
 
 	ngOnInit(): void {}
 
@@ -20,6 +24,6 @@ export class TagEditComponent implements OnInit
 	{
 		const tagName = this.nameInputRef.nativeElement.value;
 		const newTag = new Tag(tagName, 0);
-		this.tagAdded.emit(newTag);
+		this._tagService.addTag(newTag);
 	}
 }

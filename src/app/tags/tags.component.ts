@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tag } from '../shared/tag.model';
+import { TagService } from './tags.service';
 
 @Component({
 	selector: 'app-tags',
@@ -10,17 +11,19 @@ import { Tag } from '../shared/tag.model';
 export class TagsComponent implements OnInit 
 {
 	private _tags:Tag[];
+	private _tagService:TagService;
 
-	public constructor() 
+	public constructor(tagService:TagService) 
 	{
-		this._tags = [new Tag("Tester", 2), new Tag("Testy", 4)];
+		this._tagService = tagService;
 	}
 
-	ngOnInit(): void {}
-
-	public onTagAdded(tag:Tag)
+	ngOnInit(): void 
 	{
-		this._tags.unshift(tag);
+		this._tags = this._tagService.getTags();
+		this._tagService.tagChange.subscribe((tags:Tag[]) => {
+			this._tags = tags;
+		});
 	}
 
 	public get tags():Tag[] { return this._tags; }
