@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Book } from "../books/book.model";
 import { BookService } from "../books/book.service";
+import { SearchField } from "../shared/searchField.model";
 
 @Injectable()
 export class SearchService
@@ -14,6 +15,8 @@ export class SearchService
         this.searchResult = [];
     }
 
+    private toEnum(searchField:string):string { return SearchField[Number(searchField)-1]; }
+
     public searchBooks(searchQuery:string, searchField:string, searchFilter:string)
     {
         // Clear previous search result
@@ -23,12 +26,12 @@ export class SearchService
         const books = this.bookService.getBooks();
 
         // Search based on searchField
-        switch(searchField)
+        switch(this.toEnum(searchField))
         {
-            case "1": {
+            case "Name": {
                 for(let book of books)
                 {
-                    if(searchQuery == book.name)
+                    if(book.name.includes(searchQuery) == true)
                         this.searchResult.push(book);
                 }
                 console.log(this.searchResult.length);

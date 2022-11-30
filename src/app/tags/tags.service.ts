@@ -5,7 +5,7 @@ export class TagService
 {
     tagChange = new EventEmitter<Tag[]>();
     private tags:Tag[];
-    private tagInput:Tag;
+
 
 	public constructor() 
 	{
@@ -37,5 +37,4 @@ export class TagService
     }
 
     public getTags():Tag[] { return this.tags.slice(); }
-    public getTagInput():Tag { return this.tagInput; }
 }
