@@ -5,8 +5,7 @@ import { BookService } from './book.service';
 @Component({
 	selector: 'app-books',
 	templateUrl: './books.component.html',
-	styleUrls: ['./books.component.css'],
-	providers: [BookService]
+	styleUrls: ['./books.component.css']
 })
 
 export class BooksComponent implements OnInit 

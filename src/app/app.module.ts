@@ -13,6 +13,7 @@ import { TagService } from './tags/tags.service';
 import { SearchComponent } from './search/search.component';
 import { SearchEditComponent } from './search/search-edit/search-edit.component';
 import { SearchService } from './search/search.service';
+import { BookService } from './books/book.service';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { SearchService } from './search/search.service';
 	],
 	providers: [
 		TagService,
-		SearchService
+		SearchService,
+		BookService
 	],
 	bootstrap: [AppComponent]
 })

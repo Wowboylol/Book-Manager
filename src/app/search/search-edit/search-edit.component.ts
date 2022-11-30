@@ -25,5 +25,6 @@ export class SearchEditComponent implements OnInit
 		const searchQuery = this.searchQueryRef.nativeElement.value;
 		const searchField = this.searchFieldRef.nativeElement.value;
 		const searchFilter = this.searchFilterRef.nativeElement.value;
+		this._searchService.searchBooks(searchQuery, searchField, searchFilter);
 	}
 }
