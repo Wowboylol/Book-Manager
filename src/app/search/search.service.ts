@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Book } from "../books/book.model";
 import { BookService } from "../books/book.service";
 import { SearchField } from "../shared/searchField.model";
+import { SearchFilter } from "../shared/searchFilter.model";
 
 @Injectable()
 export class SearchService
@@ -16,8 +17,6 @@ export class SearchService
         this.searchResult = [];
     }
 
-    private toEnum(searchField:string):string { return SearchField[Number(searchField)-1]; }
-
     public searchBooks(searchQuery:string, searchField:string, searchFilter:string)
     {
         // Clear previous search result
@@ -27,7 +26,7 @@ export class SearchService
         const books = this.bookService.getBooks();
 
         // Search based on searchField
-        switch(this.toEnum(searchField))
+        switch(this.toEnumField(searchField))
         {
             case "Name": {
                 for(let book of books)
@@ -36,10 +35,27 @@ export class SearchService
                     if(lowerCase.includes(searchQuery) == true)
                         this.searchResult.push(book);
                 }
-                this.searchChange.emit(this.searchResult.slice());
                 break;
             }
         }
+        this.sortBooks(this.toEnumFilter(searchFilter));
+        this.searchChange.emit(this.searchResult.slice());
     }
 
+    // Helper functions
+    private sortBooks(searchFilter:string)
+    {
+        switch(searchFilter)
+        {
+            case "AlphabeticalAscending":
+                this.searchResult.sort((book1, book2) => book1.name.localeCompare(book2.name));
+                break;
+            case "AlphabeticalDescending":
+                this.searchResult.sort((book1, book2) => book2.name.localeCompare(book1.name));
+                break;
+        }
+    }
+
+    private toEnumField(searchField:string):string { return SearchField[Number(searchField)-1]; }
+    private toEnumFilter(searchFilter:string):string { return SearchFilter[Number(searchFilter)-1]; }
 }
