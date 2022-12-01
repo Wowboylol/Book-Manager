@@ -53,6 +53,12 @@ export class SearchService
             case "AlphabeticalDescending":
                 this.searchResult.sort((book1, book2) => book2.name.localeCompare(book1.name));
                 break;
+            case "RatingAscending":
+                this.searchResult.sort((book1, book2) => book1.rating - book2.rating);
+                break;
+            case "RatingDescending":
+                this.searchResult.sort((book1, book2) => book2.rating - book1.rating);
+                break;
         }
     }
 
