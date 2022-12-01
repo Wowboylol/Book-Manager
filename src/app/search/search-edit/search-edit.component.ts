@@ -12,10 +12,14 @@ export class SearchEditComponent implements OnInit
 	@ViewChild('searchField') searchFieldRef:ElementRef;
 	@ViewChild('searchFilter') searchFilterRef:ElementRef;
 	private _searchService:SearchService;
+	public invalidField:boolean;
+	public invalidFilter:boolean;
 
 	public constructor(searchService:SearchService) 
 	{
 		this._searchService = searchService;
+		this.invalidField = false;
+		this.invalidFilter = false;
 	}
 
 	ngOnInit(): void {}
@@ -25,6 +29,19 @@ export class SearchEditComponent implements OnInit
 		const searchQuery = this.searchQueryRef.nativeElement.value;
 		const searchField = this.searchFieldRef.nativeElement.value;
 		const searchFilter = this.searchFilterRef.nativeElement.value;
-		this._searchService.searchBooks(searchQuery, searchField, searchFilter);
+
+		if(searchField == 0) 
+			this.invalidField = true;
+		else if(searchFilter == 0) 
+		{ 
+			this.invalidField = false;
+			this.invalidFilter = true;
+		}
+		else
+		{
+			this.invalidField = false;
+			this.invalidFilter = false;
+			this._searchService.searchBooks(searchQuery, searchField, searchFilter);
+		}
 	}
 }

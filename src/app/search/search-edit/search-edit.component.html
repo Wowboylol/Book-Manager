@@ -1,28 +1,34 @@
-<section class="row g-3">
-    <form class="col-sm-7">
+<form class="row g-3" autocomplete="off">
+    <fieldset class="col-sm-7">
         <input type="text" id="search-bar" class="form-control" placeholder="Search" #searchQuery>
-    </form>
+    </fieldset>
 
-    <form class="col-sm-2">
-        <select class="form-select" #searchField>
-            <option selected>Search field...</option>
+    <fieldset class="col-sm-2">
+        <select class="form-select" [ngClass]="{'is-invalid':invalidField}" #searchField>
+            <option selected value="0">Search field...</option>
             <option value="1">Name</option>
             <option value="2">Author</option>
             <option value="3">Tags</option>
         </select>
-    </form>
+        <footer class="invalid-feedback">
+            Please select a valid field.
+        </footer>
+    </fieldset>
 
-    <form class="col-sm-2">
-        <select class="form-select" #searchFilter>
-            <option selected>Filter by...</option>
+    <fieldset class="col-sm-2">
+        <select class="form-select" [ngClass]="{'is-invalid':invalidFilter}" #searchFilter>
+            <option selected value="0">Filter by...</option>
             <option value="1">Recently added &uarr;</option>
             <option value="2">Recently added &darr;</option>
             <option value="3">Rating &uarr;</option>
             <option value="4">Rating &darr;</option>
         </select>
-    </form>
+        <footer class="invalid-feedback">
+            Please select a valid filter.
+        </footer>
+    </fieldset>
 
-    <form class="col-sm-1">
+    <fieldset class="col-sm-1">
         <button type="button" class="btn btn-warning" (click)="onSubmitSearch()">Submit</button>
-    </form>
-</section>
+    </fieldset>
+</form>
