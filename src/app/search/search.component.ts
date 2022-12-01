@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit
 	{
 		this._searchService.searchChange.subscribe((searchedBooks:Book[]) => {
 			this._searchedBooks = searchedBooks;
-			console.log(this._searchedBooks.length);
 		})
 	}
 

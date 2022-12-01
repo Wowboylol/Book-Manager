@@ -32,7 +32,8 @@ export class SearchService
             case "Name": {
                 for(let book of books)
                 {
-                    if(book.name.includes(searchQuery) == true)
+                    const lowerCase = book.name.toLowerCase();
+                    if(lowerCase.includes(searchQuery) == true)
                         this.searchResult.push(book);
                 }
                 this.searchChange.emit(this.searchResult.slice());
