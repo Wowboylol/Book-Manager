@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchEditComponent } from './search/search-edit/search-edit.component';
 import { SearchService } from './search/search.service';
 import { BookService } from './books/book.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { BookService } from './books/book.service';
 		SearchEditComponent
 	],
 	imports: [
-		BrowserModule
+		BrowserModule,
+		FormsModule
 	],
 	providers: [
 		TagService,
