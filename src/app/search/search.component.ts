@@ -11,18 +11,22 @@ export class SearchComponent implements OnInit
 {
 	private _searchedBooks:Book[];
 	private _searchService:SearchService;
+	private _noSearchFound:boolean;
 
 	public constructor(searchService:SearchService) 
 	{
 		this._searchService = searchService;
+		this._noSearchFound = false;
 	}
 
 	ngOnInit():void 
 	{
 		this._searchService.searchChange.subscribe((searchedBooks:Book[]) => {
 			this._searchedBooks = searchedBooks;
+			this._noSearchFound = (searchedBooks.length == 0) ? true : false;
 		})
 	}
 
 	public get searchedBooks():Book[] { return this._searchedBooks; }
+	public get noSearchFound():boolean { return this._noSearchFound; }
 }
