@@ -6,7 +6,6 @@ export class TagService
     tagChange = new EventEmitter<Tag[]>();
     private tags:Tag[];
 
-
 	public constructor() 
 	{
 		this.tags = [new Tag("Tester", 2), new Tag("Testy", 4)];

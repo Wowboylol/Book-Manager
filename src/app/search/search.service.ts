@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Book } from "../books/book.model";
 import { BookService } from "../books/book.service";
 import { SearchField } from "../shared/searchField.model";
@@ -6,6 +6,7 @@ import { SearchField } from "../shared/searchField.model";
 @Injectable()
 export class SearchService
 {
+    searchChange = new EventEmitter<Book[]>();
     private bookService:BookService;
     private searchResult:Book[];
 
@@ -34,7 +35,7 @@ export class SearchService
                     if(book.name.includes(searchQuery) == true)
                         this.searchResult.push(book);
                 }
-                console.log(this.searchResult.length);
+                this.searchChange.emit(this.searchResult.slice());
                 break;
             }
         }

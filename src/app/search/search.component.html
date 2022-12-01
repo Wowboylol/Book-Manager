@@ -8,6 +8,11 @@
 
 <section class="row mb-3">
     <article class="col-xs-10">
-        <p>search works!</p>
+        <aside class="list-group">
+            <app-book-item 
+                *ngFor="let bookElement of searchedBooks" 
+                [book]="bookElement">
+            </app-book-item>
+        </aside>
     </article>
 </section>
