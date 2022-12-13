@@ -9,10 +9,10 @@
 <section class="row mb-3">
     <article class="col-xs-10">
         <aside class="list-group">
-            <app-book-item 
+            <app-search-item
                 *ngFor="let bookElement of searchedBooks;" 
                 [book]="bookElement">
-            </app-book-item>
+            </app-search-item>
                 
             <p *ngIf="noSearchFound">No books found.</p>
         </aside>
