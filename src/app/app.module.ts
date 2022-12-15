@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,12 @@ import { BookService } from './books/book.service';
 import { FormsModule } from '@angular/forms';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 
+const appRoutes:Routes = [
+	{path: '', component: BooksComponent},
+	{path: 'search', component: SearchComponent},
+	{path: 'tags', component: TagsComponent},
+];
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -29,11 +36,12 @@ import { SearchItemComponent } from './search/search-item/search-item.component'
 		TagEditComponent,
 		SearchComponent,
 		SearchEditComponent,
-  SearchItemComponent
+  		SearchItemComponent
 	],
 	imports: [
 		BrowserModule,
-		FormsModule
+		FormsModule,
+		RouterModule.forRoot(appRoutes)
 	],
 	providers: [
 		TagService,
