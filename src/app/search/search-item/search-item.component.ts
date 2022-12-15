@@ -24,6 +24,8 @@ export class SearchItemComponent implements OnInit
 	public onSelected()
 	{
 		this._bookService.getSelectedBook().emit(this.book);
+		navigator.clipboard.writeText(this.book.link);
+		alert("Link copied to clipboard");
 	}
 
 	public get stars():number[] { return this._stars; }
