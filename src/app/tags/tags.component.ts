@@ -26,5 +26,10 @@ export class TagsComponent implements OnInit
 		});
 	}
 
+	public onEditTag(tagIndex:number)
+	{
+		this._tagService.startedEditing.next(tagIndex);
+	}
+
 	public get tags():Tag[] { return this._tags; }
 }

@@ -1,9 +1,11 @@
 import { EventEmitter } from "@angular/core";
+import { Subject } from "rxjs";
 import { Tag } from "../shared/tag.model";
 
 export class TagService
 {
     tagChange = new EventEmitter<Tag[]>();
+    startedEditing = new Subject<number>();
     private tags:Tag[];
 
 	public constructor() 
@@ -27,6 +29,12 @@ export class TagService
         }
     }
 
+    public updateTag(index:number, name:string)
+    {
+        this.tags[index].name = name;
+        this.tagChange.emit(this.tags.slice());
+    }
+
     public checkIfTagExists(tagName:string):boolean
     {
         for(let i=0; i<this.tags.length; i++)
@@ -45,4 +53,5 @@ export class TagService
     }
 
     public getTags():Tag[] { return this.tags.slice(); }
+    public getTag(index:number):Tag { return this.tags[index]; }
 }

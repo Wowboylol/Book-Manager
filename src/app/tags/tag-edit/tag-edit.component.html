@@ -16,7 +16,7 @@
 
             <aside class="row mt-3">
                 <footer class="col-xs-12">
-                    <button type="submit" class="btn btn-warning" [disabled]="!tagForm.valid">Add</button>
+                    <button type="submit" class="btn btn-warning" [disabled]="!tagForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
                     <button type="button" class="btn btn-danger ms-2">Delete</button>
                     <button type="button" class="btn btn-secondary ms-2" title="Search for books with this tag">Search</button>
                     <button type="button" class="btn btn-secondary ms-2">Clear</button>
