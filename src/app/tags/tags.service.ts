@@ -35,17 +35,10 @@ export class TagService
         this.tagChange.emit(this.tags.slice());
     }
 
-    public deleteTag(name:string)
+    public deleteTag(index:number)
     {
-        for(let i=0; i<this.tags.length; i++)
-        {
-            if(name == this.tags[i].name)
-            {
-                this.tags.splice(i, 1);
-                this.tagChange.emit(this.tags.slice());
-                break;
-            }
-        }
+        this.tags.splice(index, 1);
+        this.tagChange.emit(this.tags.slice());
     }
 
     public checkIfTagExists(tagName:string):boolean

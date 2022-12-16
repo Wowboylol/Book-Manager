@@ -69,16 +69,16 @@ export class TagEditComponent implements OnInit, OnDestroy
 		form.reset();
 	}
 
-	public onClear(form:NgForm)
+	public onClear()
 	{
 		this.tagForm.reset();
 		this._editMode = false;
+		this._tagExists = false;
 	}
 
-	public onDelete(form:NgForm)
+	public onDelete()
 	{
-		this._tagService.deleteTag(form.value.tagName);
-		this._editMode = false;
-		this.tagForm.reset();
+		this._tagService.deleteTag(this.editedTagIndex);
+		this.onClear();
 	}
 }
