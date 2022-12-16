@@ -10,6 +10,7 @@ import { Book } from '../../book.model';
 export class BookItemComponent implements OnInit 
 {
 	@Input() book:Book;
+	@Input() bookID:number;
 	private _stars:number[];
 
 	public constructor() 

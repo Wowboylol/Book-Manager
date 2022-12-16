@@ -10,8 +10,9 @@
     <article class="col-xs-12">
         <div class="list-group">
             <app-book-item 
-                *ngFor="let bookElement of books" 
-                [book]="bookElement">
+                *ngFor="let bookElement of books; let i = index" 
+                [book]="bookElement"
+                [bookID]="i">
             </app-book-item>
         </div>
     </article>

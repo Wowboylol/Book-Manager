@@ -13,7 +13,7 @@ import { Book } from '../book.model';
 
 export class BookDetailComponent implements OnInit 
 {
-	selectedBook:Book;
+	public selectedBook:Book;
 	private route:ActivatedRoute;
 	private _tagService:TagService;
 	private _bookService:BookService;
