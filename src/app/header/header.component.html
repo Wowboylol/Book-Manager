@@ -8,13 +8,13 @@
 
         <article class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link" routerLink="/search">Search</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="/">Books</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/">Books</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" routerLink="/tags">Tags</a>
                 </li>
             </ul>

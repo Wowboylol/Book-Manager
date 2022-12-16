@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,12 +16,7 @@ import { SearchService } from './search/search.service';
 import { BookService } from './books/book.service';
 import { FormsModule } from '@angular/forms';
 import { SearchItemComponent } from './search/search-item/search-item.component';
-
-const appRoutes:Routes = [
-	{path: '', component: BooksComponent},
-	{path: 'search', component: SearchComponent},
-	{path: 'tags', component: TagsComponent},
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	declarations: [
@@ -41,7 +35,7 @@ const appRoutes:Routes = [
 	imports: [
 		BrowserModule,
 		FormsModule,
-		RouterModule.forRoot(appRoutes)
+		AppRoutingModule
 	],
 	providers: [
 		TagService,
