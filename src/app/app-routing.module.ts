@@ -6,12 +6,15 @@ import { SearchComponent } from './search/search.component';
 import { TagsComponent } from './tags/tags.component';
 import { BookDefaultComponent } from './books/book-default/book-default.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import { BookEditComponent } from './books/book-edit/book-edit.component';
 
 const appRoutes:Routes = [
     { path: '', redirectTo: '/books', pathMatch: 'full' },
 	{ path: 'books', component: BooksComponent, children: [
         { path: '', component: BookDefaultComponent },
-        { path: ':id', component: BookDetailComponent }
+        { path: 'new', component: BookEditComponent },
+        { path: ':id', component: BookDetailComponent },
+        { path: ':id/edit', component: BookEditComponent }
     ]},
 	{ path: 'search', component: SearchComponent },
 	{ path: 'tags', component: TagsComponent },
