@@ -45,7 +45,7 @@ export class TagEditComponent implements OnInit, OnDestroy
 	public get tagExists():boolean { return this._tagExists; }
 	public get editMode():boolean { return this._editMode; }
 
-	public onAddTag(form:NgForm)
+	public onSubmit(form:NgForm)
 	{
 		const tagName = form.value.tagName;
 		
@@ -67,5 +67,18 @@ export class TagEditComponent implements OnInit, OnDestroy
 			this._tagExists = false;
 		}
 		form.reset();
+	}
+
+	public onClear(form:NgForm)
+	{
+		this.tagForm.reset();
+		this._editMode = false;
+	}
+
+	public onDelete(form:NgForm)
+	{
+		this._tagService.deleteTag(form.value.tagName);
+		this._editMode = false;
+		this.tagForm.reset();
 	}
 }
