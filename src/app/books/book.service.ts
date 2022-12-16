@@ -33,7 +33,7 @@ export class BookService
 					"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
 					 4, [
 						new Tag("educational", 0)
-					 ]),
+					 ])
 			// new Book(
 			// 	"Dive Into Design Patterns", 
 			// 	"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
@@ -46,5 +46,6 @@ export class BookService
 	}
 
     public getBooks():Book[] { return this.books.slice(); }
+	public getBook(index:number):Book { return this.books[index]; }
     public getSelectedBook():EventEmitter<Book> { return this.selectedBook; }
 }

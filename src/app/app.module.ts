@@ -17,6 +17,7 @@ import { BookService } from './books/book.service';
 import { FormsModule } from '@angular/forms';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BookDefaultComponent } from './books/book-default/book-default.component';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,8 @@ import { AppRoutingModule } from './app-routing.module';
 		TagEditComponent,
 		SearchComponent,
 		SearchEditComponent,
-  		SearchItemComponent
+  		SearchItemComponent,
+    BookDefaultComponent
 	],
 	imports: [
 		BrowserModule,
