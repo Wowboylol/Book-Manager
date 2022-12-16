@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Tag } from 'src/app/shared/tag.model';
 import { TagService } from '../tags.service';
 
@@ -10,20 +11,31 @@ import { TagService } from '../tags.service';
 
 export class TagEditComponent implements OnInit 
 {
-	@ViewChild('nameInput') nameInputRef:ElementRef;
 	private _tagService:TagService;
+	private _tagExists:boolean;
 
 	public constructor(tagService:TagService) 
 	{
 		this._tagService = tagService;
+		this._tagExists = false;
 	}
 
 	ngOnInit(): void {}
 
-	public onAddTag()
+	public get tagExists():boolean { return this._tagExists; }
+
+	public onAddTag(form:NgForm)
 	{
-		const tagName = this.nameInputRef.nativeElement.value;
+		const tagName = form.value.tagName;
+
+		if(this._tagService.checkIfTagExists(tagName))
+		{
+			this._tagExists = true;
+			return;
+		}
 		const newTag = new Tag(tagName, 0);
 		this._tagService.addTag(newTag);
+		this._tagExists = false;
+		form.reset();
 	}
 }

@@ -27,6 +27,15 @@ export class TagService
         }
     }
 
+    public checkIfTagExists(tagName:string):boolean
+    {
+        for(let i=0; i<this.tags.length; i++)
+        {
+            if(tagName == this.tags[i].name) return true;
+        }
+        return false;
+    }
+
     public addMultipleTags(tags:Tag[])
     {
         for(let i=0; i<tags.length; i++)
