@@ -64,4 +64,15 @@ export class BookService
 		this.books[index] = newBook; 
 		this.booksChanged.next(this.books.slice());
 	}
+
+	public deleteBook(index:number)
+	{
+		// Decrease tag amount for deleted book
+		const oldBook:Book = this.books[index];
+		this.tagService.decreaseMultipleTagAmount(oldBook.tags);
+
+		// After tags removed delete book
+		this.books.splice(index, 1);
+		this.booksChanged.next(this.books.slice());
+	}
 }

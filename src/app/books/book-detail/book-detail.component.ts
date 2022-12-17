@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Tag } from 'src/app/shared/tag.model';
 import { TagService } from 'src/app/tags/tags.service';
 import { BookService } from '../book.service';
 import { Book } from '../book.model';
@@ -18,6 +17,7 @@ export class BookDetailComponent implements OnInit
 	private route:ActivatedRoute;
 	private _tagService:TagService;
 	private _bookService:BookService;
+	private bookID;
 
 	public constructor(tagService:TagService, bookService:BookService, router:Router, route:ActivatedRoute) 
 	{
@@ -31,18 +31,20 @@ export class BookDetailComponent implements OnInit
 	{
 		this.route.params.subscribe(
 			(params) => {
+				this.bookID = +params['id'];
 				this.selectedBook = this._bookService.getBook(+params['id']);
 			}
 		);
 	}
 
-	public exportTags(tags:Tag[])
-	{
-		this._tagService.addMultipleTags(tags);
-	}
-
 	public onEditBook():void
 	{
 		this.router.navigate(['edit'], {relativeTo: this.route});
+	}
+
+	public onDeleteBook():void
+	{
+		this._bookService.deleteBook(this.bookID);
+		this.router.navigate(['/books']);
 	}
 }
