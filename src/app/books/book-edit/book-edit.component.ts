@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
 
 @Component({
@@ -44,7 +44,7 @@ export class BookEditComponent implements OnInit
 	onAddTag():void
 	{
 		(<FormArray>this._bookForm.get('tags')).push(
-			new FormGroup({'name': new FormControl()})
+			new FormGroup({'name': new FormControl(null, Validators.required)})
 		);
 	}
 
@@ -71,18 +71,18 @@ export class BookEditComponent implements OnInit
 				for(let tag of book.tags)
 				{
 					bookTags.push(
-						new FormGroup({'name': new FormControl(tag.name)})
+						new FormGroup({'name': new FormControl(tag.name, Validators.required)})
 					);
 				}
 			}
 		}
 
 		this._bookForm = new FormGroup({
-			'name': new FormControl(bookName),
-			'imagePath': new FormControl(bookImagePath),
-			'rating': new FormControl(bookRating),
-			'link': new FormControl(bookLink),
-			'description': new FormControl(bookDescription),
+			'name': new FormControl(bookName, Validators.required),
+			'imagePath': new FormControl(bookImagePath, Validators.required),
+			'rating': new FormControl(bookRating, [Validators.required, Validators.min(0), Validators.max(5)]),
+			'link': new FormControl(bookLink, Validators.required),
+			'description': new FormControl(bookDescription, Validators.required),
 			'tags': bookTags
 		});
 	}
