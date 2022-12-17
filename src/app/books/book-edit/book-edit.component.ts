@@ -57,6 +57,11 @@ export class BookEditComponent implements OnInit
 		this.router.navigate(['../'], {relativeTo: this.route});
 	}
 
+	onDeleteTag(index:number)
+	{
+		(<FormArray>this.bookForm.get('tags')).removeAt(index);
+	}
+
 	private initForm():void
 	{
 		let bookName = '';
