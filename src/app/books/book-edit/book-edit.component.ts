@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
+import { Book } from '../book.model';
 
 @Component({
 	selector: 'app-book-edit',
@@ -38,7 +39,22 @@ export class BookEditComponent implements OnInit
 
 	onSubmit():void
 	{
-		console.log(this._bookForm);
+		// const newBook = new Book(
+		// 	this.bookForm.value['name'],
+		// 	this.bookForm.value['description'],
+		// 	this.bookForm.value['link'],
+		// 	this.bookForm.value['imagePath'],
+		// 	this.bookForm.value['rating'],
+		// 	this.bookForm.value['tags']
+		// )
+		if(this._editMode)
+		{
+			this.bookService.updateBook(this._bookID, this._bookForm.value);
+		}
+		else
+		{
+			this.bookService.addBook(this._bookForm.value);
+		}
 	}
 
 	onAddTag():void

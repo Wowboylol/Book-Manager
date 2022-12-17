@@ -1,6 +1,6 @@
 <section class="row">
     <article class="col-xs-12">
-        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" autocomplete="off" #f>
+        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="row">
                 <div class="col-xs-12">
                     <button type="submit" class="btn btn-warning" [disabled]="!bookForm.valid">Save</button>
