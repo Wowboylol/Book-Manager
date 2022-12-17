@@ -19,7 +19,13 @@ export class TagService
             if(tag.name == this.tags[i].name)
                 tagWithName = this.tags[i];
         }
-        if(tagWithName == null)
+        if(tag.amount == -1)
+        {
+            tag.amount = 0;
+            this.tags.unshift(tag);
+            this.tagChange.emit(this.tags.slice());
+        }
+        else if(tagWithName == null)
         {
             tagWithName = new Tag(tag.name, 1);
             this.tags.unshift(tagWithName);
@@ -49,11 +55,16 @@ export class TagService
         this.tagChange.emit(this.tags.slice());
     }
 
-    // Deletes tag completely, regardless of amount
-    public deleteTag(index:number)
+    // Deletes tag completely only if tag amount == 0, returns whether a tag is successfully deleted or not
+    public deleteTag(index:number):boolean
     {
-        this.tags.splice(index, 1);
-        this.tagChange.emit(this.tags.slice());
+        if(this.tags[index].amount == 0)
+        {
+            this.tags.splice(index, 1);
+            this.tagChange.emit(this.tags.slice());
+            return true;
+        }
+        return false;
     }
 
     // Deletes tag only if tag amount == 1, else decrease tag amount

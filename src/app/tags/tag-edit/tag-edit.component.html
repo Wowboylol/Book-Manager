@@ -10,7 +10,7 @@
                         [ngClass]="{'is-invalid': tagExists}" 
                         name="tagName" 
                         ngModel required>
-                    <footer class="invalid-feedback">Tag already exists!</footer>
+                    <footer class="invalid-feedback">{{errorMsg}}</footer>
                 </fieldset>
             </aside>
 

@@ -19,6 +19,7 @@ export class TagEditComponent implements OnInit, OnDestroy
 	private _editMode:boolean;
 	private editedTagIndex:number;
 	private editedTag:Tag;
+	private _errorMsg:string = "Tag already exists!";
 
 	public constructor(tagService:TagService) 
 	{
@@ -44,6 +45,7 @@ export class TagEditComponent implements OnInit, OnDestroy
 
 	public get tagExists():boolean { return this._tagExists; }
 	public get editMode():boolean { return this._editMode; }
+	public get errorMsg():string { return this._errorMsg; }
 
 	public onSubmit(form:NgForm)
 	{
@@ -57,10 +59,11 @@ export class TagEditComponent implements OnInit, OnDestroy
 		}
 		else
 		{
-			const newTag = new Tag(tagName, 0);
+			const newTag = new Tag(tagName, -1);
 			if(this._tagService.checkIfTagExists(tagName))
 			{
 				this._tagExists = true;
+				this._errorMsg = "Tag already exists!";
 				return;
 			}
 			this._tagService.addTag(newTag);
@@ -78,7 +81,15 @@ export class TagEditComponent implements OnInit, OnDestroy
 
 	public onDelete()
 	{
-		this._tagService.deleteTag(this.editedTagIndex);
-		this.onClear();
+		if(this._tagService.deleteTag(this.editedTagIndex)) 
+		{
+			this.onClear();
+			this._errorMsg = "Tag already exists!";
+		}
+		else
+		{
+			this._errorMsg = "You can only remove tags that do not already exist on a book!";
+			this._tagExists = true;
+		}
 	}
 }
