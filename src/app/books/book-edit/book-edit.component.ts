@@ -43,7 +43,9 @@ export class BookEditComponent implements OnInit
 
 	onAddTag():void
 	{
-		
+		(<FormArray>this._bookForm.get('tags')).push(
+			new FormGroup({'name': new FormControl()})
+		);
 	}
 
 	private initForm():void
