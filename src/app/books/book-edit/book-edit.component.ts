@@ -39,14 +39,6 @@ export class BookEditComponent implements OnInit
 
 	onSubmit():void
 	{
-		// const newBook = new Book(
-		// 	this.bookForm.value['name'],
-		// 	this.bookForm.value['description'],
-		// 	this.bookForm.value['link'],
-		// 	this.bookForm.value['imagePath'],
-		// 	this.bookForm.value['rating'],
-		// 	this.bookForm.value['tags']
-		// )
 		if(this._editMode)
 		{
 			this.bookService.updateBook(this._bookID, this._bookForm.value);
