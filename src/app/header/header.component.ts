@@ -14,5 +14,5 @@ export class HeaderComponent
 
     public onSaveData() { this.dataStorage.storeBooks(); }
 
-    public onFetchData() { this.dataStorage.fetchBooks(); }
+    public onFetchData() { this.dataStorage.fetchBooks().subscribe(); }
 }

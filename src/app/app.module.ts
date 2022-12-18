@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { BookDefaultComponent } from './books/book-default/book-default.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { BookResolverService } from './books/book-resolver.service';
 
 @NgModule({
 	declarations: [
@@ -47,7 +48,8 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
 	providers: [
 		TagService,
 		SearchService,
-		BookService
+		BookService,
+		BookResolverService
 	],
 	bootstrap: [AppComponent]
 })
