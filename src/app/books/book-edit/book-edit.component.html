@@ -71,7 +71,10 @@
                 <label class="fw-bold">Tag Name</label>
                 <div class="row" *ngFor="let tagCtrl of controls; let i = index" [formGroupName]="i">
                     <div class="col-sm-8 mt-1">
-                        <input type="text" class="form-control" formControlName="name">
+                        <input type="text" class="form-control" formControlName="name" list="tagList">
+                        <datalist id="tagList">
+                            <option *ngFor="let tag of getAllTags()" [value]="tag.name">{{tag.name}}</option>
+                        </datalist>
                     </div>
                     <div class="col-sm-2 mt-1">
                         <button type="button" class="btn btn-danger" (click)="onDeleteTag(i)">X</button>

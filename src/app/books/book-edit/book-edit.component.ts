@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
+import { TagService } from 'src/app/tags/tags.service';
 
 @Component({
 	selector: 'app-book-edit',
@@ -13,15 +14,17 @@ export class BookEditComponent implements OnInit
 	private route:ActivatedRoute;
 	private router:Router;
 	private bookService:BookService;
+	private tagService:TagService;
 	private _bookID:number;
 	private _editMode:boolean;
 	private _bookForm:FormGroup;
 
-	constructor(route:ActivatedRoute, bookService:BookService, router:Router)
+	constructor(route:ActivatedRoute, bookService:BookService, router:Router, tagService:TagService)
 	{ 
 		this.route = route;
 		this._editMode = false;
 		this.bookService = bookService;
+		this.tagService = tagService;
 		this.router = router;
 	}
 
@@ -60,6 +63,11 @@ export class BookEditComponent implements OnInit
 	onDeleteTag(index:number)
 	{
 		(<FormArray>this.bookForm.get('tags')).removeAt(index);
+	}
+
+	getAllTags()
+	{
+		return this.tagService.getTags();
 	}
 
 	private initForm():void
