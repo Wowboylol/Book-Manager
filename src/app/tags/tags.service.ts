@@ -70,7 +70,7 @@ export class TagService
         }
     }
 
-    // Decrease tag amount by 1
+    // Decrease tag amount by 1, if amount is 0 then delete tag
     public decreaseTagAmount(tagName:string)
     {
         for(let i=0; i<this.tags.length; i++)
@@ -82,21 +82,6 @@ export class TagService
                 return;
             }
         }
-    }
-
-    // Mark tags that have amount <= 0 as to delete and return the index of those tags
-    public markTagsToDelete():number[]
-    {
-        let tagsToDelete:number[] = [];
-
-        for(let i=0; i<this.tags.length; i++)
-        {
-            if(this.tags[i].amount <= 0)
-            {
-                tagsToDelete.push(i);
-            }
-        }
-        return tagsToDelete;
     }
 
     // Decrease tag amount then mark them for deletion before deleting them
