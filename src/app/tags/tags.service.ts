@@ -78,6 +78,7 @@ export class TagService
             if(tagName == this.tags[i].name)
             {
                 this.tags[i].amount--;
+                if(this.tags[i].amount <= 0) this.deleteTag(i);
                 return;
             }
         }
@@ -105,10 +106,6 @@ export class TagService
         {
             this.decreaseTagAmount(tags[i].name);
         }
-        var tagsToDelete = this.markTagsToDelete();
-        this.deleteMultipleTags(tagsToDelete);
-        tagsToDelete = this.markTagsToDelete();
-        this.deleteMultipleTags(tagsToDelete);
     }
 
     public checkIfTagExists(tagName:string):boolean
