@@ -66,6 +66,12 @@ export class SearchService
             case "RatingDescending":
                 this.searchResult.sort((book1, book2) => book2.rating - book1.rating);
                 break;
+            case "MostRecentlyAdded":
+                // Search result already in most recently added order
+                break;
+            case "LeastRecentlyAdded":
+                this.searchResult.reverse();
+                break;
         }
     }
 

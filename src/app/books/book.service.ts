@@ -20,7 +20,7 @@ export class BookService
 	public addBook(book:Book)
 	{
 		book.tags = this.tagService.addMultipleTags(book.tags.slice());
-		this.books.push(book); 
+		this.books.unshift(book); 
 		this.booksChanged.next(this.books.slice());
 	}
 
@@ -29,7 +29,7 @@ export class BookService
 		for(let book of books)
 		{
 			book.tags = this.tagService.addMultipleTags(book.tags.slice());
-			this.books.push(book);
+			this.books.unshift(book);
 		}
 		this.booksChanged.next(this.books.slice());
 	}

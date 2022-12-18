@@ -4,6 +4,6 @@ export enum SearchFilter
     AlphabeticalDescending,
     RatingAscending,
     RatingDescending,
-    RecentAscending,
-    RecentDescending,
+    MostRecentlyAdded,
+    LeastRecentlyAdded,
 }
