@@ -78,6 +78,5 @@ export class BookService
 	private removeTags(index:number)
 	{
 		this.tagService.updateAndDeleteTags(this.getBook(index).tags.slice());
-		console.log(this.getBook(index).tags);
 	}
 }

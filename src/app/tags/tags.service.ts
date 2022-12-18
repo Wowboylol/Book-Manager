@@ -46,7 +46,6 @@ export class TagService
         {
             retTags.push(this.addTag(tags[i]));
         }
-        console.log(this.tags);
         return retTags;
     }
 
@@ -56,16 +55,11 @@ export class TagService
         this.tagChange.emit(this.tags.slice());
     }
 
-    // Deletes tag completely only if tag amount == 0, returns whether a tag is successfully deleted or not
-    public deleteTag(index:number):boolean
+    // Deletes a tag from the tag list. Precondition: tag must not have books associated with it
+    public deleteTag(index:number)
     {
-        if(this.tags[index].amount <= 0)
-        {
-            this.tags.splice(index, 1);
-            this.tagChange.emit(this.tags.slice());
-            return true;
-        }
-        return false;
+        this.tags.splice(index, 1);
+        this.tagChange.emit(this.tags.slice());
     }
 
     public deleteMultipleTags(indexes:number[])
@@ -84,7 +78,6 @@ export class TagService
             if(tagName == this.tags[i].name)
             {
                 this.tags[i].amount--;
-                // this.tagChange.emit(this.tags.slice());
                 return;
             }
         }
@@ -112,7 +105,9 @@ export class TagService
         {
             this.decreaseTagAmount(tags[i].name);
         }
-        const tagsToDelete = this.markTagsToDelete();
+        var tagsToDelete = this.markTagsToDelete();
+        this.deleteMultipleTags(tagsToDelete);
+        tagsToDelete = this.markTagsToDelete();
         this.deleteMultipleTags(tagsToDelete);
     }
 
@@ -123,6 +118,11 @@ export class TagService
             if(tagName == this.tags[i].name) return true;
         }
         return false;
+    }
+
+    public checkIfTagHasBooks(index:number):boolean
+    {
+        if(this.tags[index].amount > 0) return true;
     }
 
     public getTags():Tag[] { return this.tags.slice(); }

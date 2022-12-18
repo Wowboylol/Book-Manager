@@ -81,8 +81,9 @@ export class TagEditComponent implements OnInit, OnDestroy
 
 	public onDelete()
 	{
-		if(this._tagService.deleteTag(this.editedTagIndex)) 
+		if(this._tagService.checkIfTagHasBooks(this.editedTagIndex) == false) 
 		{
+			this._tagService.deleteTag(this.editedTagIndex);
 			this.onClear();
 			this._errorMsg = "Tag already exists!";
 		}
