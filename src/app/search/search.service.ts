@@ -37,6 +37,13 @@ export class SearchService
                 }
                 break;
             }
+            case "Tags": {
+                for(let book of books)
+                {
+                    if(this.bookService.checkIfBookHasTag(book, searchQuery.toLowerCase()) == true)
+                        this.searchResult.push(book);
+                }
+            }
         }
         this.sortBooks(this.toEnumFilter(searchFilter));
         this.searchChange.emit(this.searchResult.slice());

@@ -74,6 +74,15 @@ export class BookService
 		this.booksChanged.next(this.books.slice());
 	}
 
+	public checkIfBookHasTag(book:Book, tagName:string):boolean
+	{
+		for(let tag of book.tags)
+		{
+			if(tag.name.toLowerCase() === tagName) { return true; }
+		}
+		return false;
+	}
+
 	// Helper function: removes old tags of to be deleted/updated book
 	private removeTags(index:number)
 	{
