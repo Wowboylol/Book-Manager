@@ -11,36 +11,7 @@ export class BookService
     private books:Book[] = [];
     private selectedBook = new EventEmitter<Book>();
 
-    public constructor(private tagService:TagService) 
-	{ 
-		this.addBook(new Book(
-			"Dive Into Design Patterns", 
-			"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
-			"https://refactoring.guru/design-patterns/book", 
-			"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-			4, [
-				new Tag("educational", 0)
-			])
-		)
-		this.addBook(new Book(
-			"Dive Into Design Patterns", 
-			"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
-			"https://refactoring.guru/design-patterns/book", 
-			"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-			4, [
-				new Tag("educational", 0)
-			])
-		)
-		this.addBook(new Book(
-			"Dive Into Design Patterns", 
-			"The book 'Dive Into Design Patterns' illustrates 22 classic design patterns, and 8 design principles that these patterns are based on.", 
-			"https://refactoring.guru/design-patterns/book", 
-			"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1543945452i/43125355.jpg", 
-			4, [
-				new Tag("educational", 0)
-			])
-		)
-	}
+    public constructor(private tagService:TagService) { }
 
     public getBooks():Book[] { return this.books.slice(); }
 	public getBook(index:number):Book { return this.books[index]; }
@@ -50,6 +21,16 @@ export class BookService
 	{
 		book.tags = this.tagService.addMultipleTags(book.tags.slice());
 		this.books.push(book); 
+		this.booksChanged.next(this.books.slice());
+	}
+
+	public setBooks(books:Book[])
+	{
+		for(let book of books)
+		{
+			book.tags = this.tagService.addMultipleTags(book.tags.slice());
+			this.books.push(book);
+		}
 		this.booksChanged.next(this.books.slice());
 	}
 

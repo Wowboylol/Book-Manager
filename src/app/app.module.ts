@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,9 +16,8 @@ import { SearchComponent } from './search/search.component';
 import { SearchEditComponent } from './search/search-edit/search-edit.component';
 import { SearchService } from './search/search.service';
 import { BookService } from './books/book.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchItemComponent } from './search/search-item/search-item.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchItemComponent } from './search/search-item/search-item.component';
 import { BookDefaultComponent } from './books/book-default/book-default.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 
@@ -40,7 +41,8 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
 		BrowserModule,
 		FormsModule,
 		AppRoutingModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		HttpClientModule
 	],
 	providers: [
 		TagService,
