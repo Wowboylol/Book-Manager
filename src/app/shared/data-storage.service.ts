@@ -11,7 +11,7 @@ export class DataStorageService
 
     storeBooks()
     {
-        const books = this.bookService.getBooks();
+        const books = this.bookService.getBooks().reverse();
         this.http.put(
             '', 
             books
