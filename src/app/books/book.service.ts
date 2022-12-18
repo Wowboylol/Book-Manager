@@ -55,24 +55,29 @@ export class BookService
 
 	public updateBook(index:number, newBook:Book) 
 	{ 
-		// Decrease tag amounts of old book
-		const oldBook:Book = this.books[index];
-		this.tagService.decreaseMultipleTagAmount(oldBook.tags);
+		// Decrease tag amount for deleted book
+		this.removeTags(index);
 
 		// Update new book with updated tags
 		newBook.tags = this.tagService.addMultipleTags(newBook.tags.slice());
-		this.books[index] = newBook; 
+		this.books[index] = newBook;
 		this.booksChanged.next(this.books.slice());
 	}
 
 	public deleteBook(index:number)
 	{
 		// Decrease tag amount for deleted book
-		const oldBook:Book = this.books[index];
-		this.tagService.decreaseMultipleTagAmount(oldBook.tags);
+		this.removeTags(index);
 
 		// After tags removed delete book
 		this.books.splice(index, 1);
 		this.booksChanged.next(this.books.slice());
+	}
+
+	// Helper function: removes old tags of to be deleted/updated book
+	private removeTags(index:number)
+	{
+		this.tagService.updateAndDeleteTags(this.getBook(index).tags.slice());
+		console.log(this.getBook(index).tags);
 	}
 }

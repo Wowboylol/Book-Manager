@@ -46,6 +46,7 @@ export class TagService
         {
             retTags.push(this.addTag(tags[i]));
         }
+        console.log(this.tags);
         return retTags;
     }
 
@@ -58,7 +59,7 @@ export class TagService
     // Deletes tag completely only if tag amount == 0, returns whether a tag is successfully deleted or not
     public deleteTag(index:number):boolean
     {
-        if(this.tags[index].amount == 0)
+        if(this.tags[index].amount <= 0)
         {
             this.tags.splice(index, 1);
             this.tagChange.emit(this.tags.slice());
@@ -67,20 +68,53 @@ export class TagService
         return false;
     }
 
-    // Deletes tag only if tag amount == 1, else decrease tag amount
-    public decreaseTagAmount(tag:Tag)
+    public deleteMultipleTags(indexes:number[])
+    {
+        for(let i=0; i<indexes.length; i++)
+        {
+            this.deleteTag(indexes[i]);
+        }
+    }
+
+    // Decrease tag amount by 1
+    public decreaseTagAmount(tagName:string)
     {
         for(let i=0; i<this.tags.length; i++)
         {
-            if(tag.name = this.tags[i].name)
+            if(tagName == this.tags[i].name)
             {
                 this.tags[i].amount--;
-                if(this.tags[i].amount <= 0) this.deleteTag(i);
+                // this.tagChange.emit(this.tags.slice());
+                return;
             }
         }
     }
 
-    public decreaseMultipleTagAmount(tags:Tag[]) { for(let tag of tags) this.decreaseTagAmount(tag); }
+    // Mark tags that have amount <= 0 as to delete and return the index of those tags
+    public markTagsToDelete():number[]
+    {
+        let tagsToDelete:number[] = [];
+
+        for(let i=0; i<this.tags.length; i++)
+        {
+            if(this.tags[i].amount <= 0)
+            {
+                tagsToDelete.push(i);
+            }
+        }
+        return tagsToDelete;
+    }
+
+    // Decrease tag amount then mark them for deletion before deleting them
+    public updateAndDeleteTags(tags:Tag[])
+    {
+        for(let i=0; i<tags.length; i++)
+        {
+            this.decreaseTagAmount(tags[i].name);
+        }
+        const tagsToDelete = this.markTagsToDelete();
+        this.deleteMultipleTags(tagsToDelete);
+    }
 
     public checkIfTagExists(tagName:string):boolean
     {
