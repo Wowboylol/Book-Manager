@@ -62,14 +62,6 @@ export class TagService
         this.tagChange.emit(this.tags.slice());
     }
 
-    public deleteMultipleTags(indexes:number[])
-    {
-        for(let i=0; i<indexes.length; i++)
-        {
-            this.deleteTag(indexes[i]);
-        }
-    }
-
     // Decrease tag amount by 1, if amount is 0 then delete tag
     public decreaseTagAmount(tagName:string)
     {
