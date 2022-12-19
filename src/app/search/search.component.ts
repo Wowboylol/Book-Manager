@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Book } from '../books/book.model';
 import { SearchService } from './search.service';
 
@@ -7,11 +8,12 @@ import { SearchService } from './search.service';
 	templateUrl: './search.component.html',
 	styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit 
+export class SearchComponent implements OnInit, OnDestroy
 {
 	private _searchedBooks:Book[];
 	private _searchService:SearchService;
 	private _noSearchFound:boolean;
+	private subscription:Subscription;
 
 	public constructor(searchService:SearchService) 
 	{
@@ -21,10 +23,15 @@ export class SearchComponent implements OnInit
 
 	ngOnInit():void 
 	{
-		this._searchService.searchChange.subscribe((searchedBooks:Book[]) => {
+		this.subscription = this._searchService.searchChange.subscribe((searchedBooks:Book[]) => {
 			this._searchedBooks = searchedBooks;
 			this._noSearchFound = (searchedBooks.length == 0) ? true : false;
 		})
+	}
+
+	ngOnDestroy(): void 
+	{
+		this.subscription.unsubscribe();
 	}
 
 	public get searchedBooks():Book[] { return this._searchedBooks; }
