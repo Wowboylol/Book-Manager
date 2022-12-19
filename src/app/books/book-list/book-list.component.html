@@ -1,8 +1,10 @@
-<section class="row">
-    <article class="col-xs-12">
+<form class="row" autocomplete="off">
+    <fieldset class="input-group col-xs-12">
         <button class="btn btn-warning" (click)="onNewBook()">New book</button>
-    </article>
-</section>
+        <input type="text" id="quick-search" class="form-control" placeholder="Quick Search..." #quickSearch>
+        <button class="btn btn-warning" (click)="onQuickSearch(quickSearch.value)"><i class="fa fa-search"></i></button>
+    </fieldset>
+</form>
 
 <hr>
 
@@ -10,9 +12,9 @@
     <article class="col-xs-12">
         <div class="list-group">
             <app-book-item 
-                *ngFor="let bookElement of books; let i = index" 
-                [book]="bookElement"
-                [bookID]="i">
+                *ngFor="let bookIndex of bookIndexes" 
+                [book]="books[bookIndex]"
+                [bookID]="bookIndex">
             </app-book-item>
         </div>
     </article>

@@ -10,6 +10,7 @@ export class SearchService
     searchChange = new EventEmitter<Book[]>();
     private bookService:BookService;
     private searchResult:Book[];
+    private _searchResultIndexes:number[];
 
     public constructor(bookService:BookService)
     {
@@ -17,10 +18,13 @@ export class SearchService
         this.searchResult = [];
     }
 
+    public get searchResultIndexes():number[] { return this._searchResultIndexes; }
+
     public searchBooks(searchQuery:string, searchField:string, searchFilter:string)
     {
         // Clear previous search result
         this.searchResult = [];
+        this._searchResultIndexes = [];
 
         // Get list of books
         const books = this.bookService.getBooks();
@@ -29,11 +33,14 @@ export class SearchService
         switch(this.toEnumField(searchField))
         {
             case "Name": {
-                for(let book of books)
+                for(let i = 0; i < books.length; i++)
                 {
-                    const lowerCase = book.name.toLowerCase();
-                    if(lowerCase.includes(searchQuery) == true || book.name.includes(searchQuery) == true)
-                        this.searchResult.push(book);
+                    const lowerCase = books[i].name.toLowerCase();
+                    if(lowerCase.includes(searchQuery) == true || books[i].name.includes(searchQuery) == true)
+                    {
+                        this.searchResult.push(books[i]);
+                        this._searchResultIndexes.push(i);
+                    }
                 }
                 break;
             }
