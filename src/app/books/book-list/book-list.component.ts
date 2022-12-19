@@ -17,8 +17,10 @@ export class BookListComponent implements OnInit, OnDestroy
 	private searchService:SearchService;
 	private router:Router;
 	private route:ActivatedRoute;
-	private _books:Book[];
-	private _bookIndexes:number[];
+	private _books:Book[] = [];
+	private _bookIndexes:number[] = [];
+	private bookDisplayLimit:number;
+	private displaySearchResults:boolean;
 	private subscription:Subscription;
 	private searchSubscription:Subscription;
 	
@@ -26,6 +28,8 @@ export class BookListComponent implements OnInit, OnDestroy
 	{
 		this.bookService = bookService;
 		this.searchService = searchService;
+		this.displaySearchResults = false;
+		this.bookDisplayLimit = 5;
 		this.router = router;
 		this.route = route;
 	}
@@ -35,12 +39,16 @@ export class BookListComponent implements OnInit, OnDestroy
 		this.subscription = this.bookService.booksChanged.subscribe(
 			(books:Book[]) => {
 				this._books = books;
-				this._bookIndexes = Array.from(Array(books.length),(x,i)=>i)
+
+				if(this.isBookOverLimit()) this._bookIndexes = Array.from(Array(this.bookDisplayLimit),(x,i)=>i);
+				else this._bookIndexes = Array.from(Array(books.length),(x,i)=>i);
 			}
 		);
 		this.searchSubscription = this.searchService.searchChange.subscribe(
 			(searchedBooks:Book[]) => {
 				this._bookIndexes = this.searchService.searchResultIndexes;
+
+				if(this.isBookOverLimit()) this._bookIndexes.length = this.bookDisplayLimit;
 			}
 		);
 		this.resetBookView();
@@ -64,16 +72,45 @@ export class BookListComponent implements OnInit, OnDestroy
 	{
 		if(searchTerm == "" || searchTerm == null || searchTerm.startsWith(" ")) 
 		{
+			this.displaySearchResults = false;
 			this.resetBookView();
 			return;
 		}
+		this.displaySearchResults = true;
 		this.searchService.searchBooks(searchTerm, "1", "5");
+		this.resetBookView();
+	}
+
+	// Returns true if the amount of books is over the display limit
+	public isBookOverLimit():boolean
+	{
+		if(this.searchService.searchResultIndexes.length <= this.bookDisplayLimit && this.displaySearchResults) return false;
+		if(this._books.length > this.bookDisplayLimit) return true;
+		return false;
+	}
+
+	// Increase book limit
+	public increaseBookLimit():void
+	{
+		this.bookDisplayLimit += 5;
+		this.resetBookView();
 	}
 
 	// Removes quick search results
 	private resetBookView():void
 	{
-		this._books = this.bookService.getBooks();
-		this._bookIndexes = Array.from(Array(this._books.length),(x,i)=>i)
+		if(this.displaySearchResults) 
+		{
+			this._bookIndexes = this.searchService.searchResultIndexes;
+
+			if(this.isBookOverLimit()) this._bookIndexes.length = this.bookDisplayLimit;
+		}
+		else
+		{
+			this._books = this.bookService.getBooks();
+		
+			if(this.isBookOverLimit()) this._bookIndexes = Array.from(Array(this.bookDisplayLimit),(x,i)=>i);
+			else this._bookIndexes = Array.from(Array(this._books.length),(x,i)=>i);
+		}
 	}
 }

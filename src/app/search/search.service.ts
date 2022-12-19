@@ -16,6 +16,7 @@ export class SearchService
     {
         this.bookService = bookService;
         this.searchResult = [];
+        this._searchResultIndexes = [];
     }
 
     public get searchResultIndexes():number[] { return this._searchResultIndexes; }

@@ -1,8 +1,8 @@
 <form class="row" autocomplete="off">
     <fieldset class="input-group col-xs-12">
-        <button class="btn btn-warning" (click)="onNewBook()">New book</button>
-        <input type="text" id="quick-search" class="form-control" placeholder="Quick Search..." #quickSearch>
         <button class="btn btn-warning" (click)="onQuickSearch(quickSearch.value)"><i class="fa fa-search"></i></button>
+        <input type="text" id="quick-search" class="form-control" placeholder="Quick Search..." #quickSearch>
+        <button class="btn btn-warning" (click)="onNewBook()">New book</button>
     </fieldset>
 </form>
 
@@ -16,6 +16,7 @@
                 [book]="books[bookIndex]"
                 [bookID]="bookIndex">
             </app-book-item>
+            <button type="button" class="btn btn-outline-primary mt-2" *ngIf="isBookOverLimit()" (click)="increaseBookLimit()">Load More</button>
         </div>
     </article>
 </section>
