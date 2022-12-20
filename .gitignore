@@ -38,6 +38,7 @@ testem.log
 /typings
 re-add.txt
 ng-book-manager-default-rtdb-export.json
+src/environments/
 
 # System files
 .DS_Store
