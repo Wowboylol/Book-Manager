@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BookService } from "../books/book.service";
 import { Book } from "../books/book.model";
 import { map, tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService
@@ -13,7 +14,7 @@ export class DataStorageService
     {
         const books = this.bookService.getBooks().reverse();
         this.http.put(
-            '', 
+            environment.firebase, 
             books
         )
         .subscribe(response => {
@@ -24,7 +25,7 @@ export class DataStorageService
     fetchBooks()
     {
         return this.http.get<Book[]>(
-            ''
+            environment.firebase
         )
         .pipe(
             map(books => {
