@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-root',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 
 export class AppComponent 
 {
-
-	public constructor() { }
+	public constructor() 
+	{ 
+		console.log(environment.notes);
+	}
 }
