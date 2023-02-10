@@ -8,6 +8,7 @@ import { BookDefaultComponent } from './books/book-default/book-default.componen
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookResolverService } from './books/book-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes:Routes = [
     { path: '', redirectTo: '/books', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const appRoutes:Routes = [
     ]},
 	{ path: 'search', component: SearchComponent },
 	{ path: 'tags', component: TagsComponent },
+    { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

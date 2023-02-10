@@ -21,6 +21,7 @@ import { SearchItemComponent } from './search/search-item/search-item.component'
 import { BookDefaultComponent } from './books/book-default/book-default.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookResolverService } from './books/book-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { BookResolverService } from './books/book-resolver.service';
 		SearchEditComponent,
   		SearchItemComponent,
 		BookDefaultComponent,
-		BookEditComponent
+		BookEditComponent,
+		AuthComponent
 	],
 	imports: [
 		BrowserModule,
