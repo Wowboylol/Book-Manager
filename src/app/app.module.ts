@@ -22,6 +22,7 @@ import { BookDefaultComponent } from './books/book-default/book-default.componen
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookResolverService } from './books/book-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { AuthComponent } from './auth/auth.component';
   		SearchItemComponent,
 		BookDefaultComponent,
 		BookEditComponent,
-		AuthComponent
+		AuthComponent,
+		LoadingSpinnerComponent
 	],
 	imports: [
 		BrowserModule,
