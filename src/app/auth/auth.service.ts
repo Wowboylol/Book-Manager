@@ -4,7 +4,7 @@ import { catchError } from "rxjs";
 import { throwError } from "rxjs";
 import { environment } from "../../environments/environment";
 
-interface AuthResponseData
+export interface AuthResponseData
 {
     kind: string;
     idToken: string;
@@ -12,6 +12,7 @@ interface AuthResponseData
     refreshToken: string;
     expiresIn: string;
     localId: string;
+    registered?: boolean;
 }
 
 @Injectable({providedIn: 'root'})
@@ -39,5 +40,17 @@ export class AuthService
                 return throwError(errorMessage);
             }
         ));
+    }
+
+    public login(email: string, password: string)
+    {
+        return this.http.post<AuthResponseData>(
+            "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + environment.firebaseApiKey,
+            {
+                email: email,
+                password: password,
+                returnSecureToken: true
+            }
+        );
     }
 }
