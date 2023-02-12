@@ -97,6 +97,7 @@ export class TagService
     public checkIfTagHasBooks(index:number):boolean
     {
         if(this.tags[index].amount > 0) return true;
+        else return false;
     }
 
     public getTags():Tag[] { return this.tags.slice(); }
