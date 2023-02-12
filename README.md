@@ -1,4 +1,4 @@
-# BookManager
+# Book Manager
 
 This application allow users to create, edit, and save personalized lists of books linked to their own registered accounts. Generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9, and hosted on AWS Amplify.
 
@@ -10,3 +10,9 @@ This application allow users to create, edit, and save personalized lists of boo
 - View tag statistics such as books per tag
 - Edit and delete tags for multiple books at a time
 - Easy to learn and comfortable UI
+
+## Details
+- Framework: Angular
+- Host: AWS Amplify
+- Database: Google Firebase
+- Authentication REST API: Firebase Authentication
