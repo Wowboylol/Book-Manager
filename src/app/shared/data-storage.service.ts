@@ -1,16 +1,19 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { map, tap, take, exhaustMap } from "rxjs/operators";
+import { HttpParams } from "@angular/common/http";
+
 import { BookService } from "../books/book.service";
 import { Book } from "../books/book.model";
-import { map, tap } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService
 {
-    public constructor(private http:HttpClient, private bookService:BookService) { }
+    public constructor(private http:HttpClient, private bookService:BookService, private authService:AuthService) { }
 
-    storeBooks()
+    public storeBooks()
     {
         const books = this.bookService.getBooks().reverse();
         this.http.put(
@@ -22,12 +25,11 @@ export class DataStorageService
         });
     }
 
-    fetchBooks()
+    public fetchBooks()
     {
         return this.http.get<Book[]>(
             environment.firebase
-        )
-        .pipe(
+        ).pipe(
             map(books => {
                 return books.map(book => {
                     return {...book, tags: book.tags ? book.tags:[]};
@@ -36,6 +38,6 @@ export class DataStorageService
             tap(books => {
                 this.bookService.setBooks(books);
             })
-        )
+        );
     }
 }
