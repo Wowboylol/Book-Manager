@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import { AuthResponseData } from './auth.service';
@@ -15,7 +16,7 @@ export class AuthComponent
     public isLoading = false;
     public error:string = null;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private router: Router) { }
 
     public onSwitchMode() 
     { 
@@ -38,6 +39,7 @@ export class AuthComponent
             res => {
                 console.log(res);
                 this.isLoading = false;
+                this.router.navigate(['/books']);
             },
             errorMessage => {
                 this.error = errorMessage;
