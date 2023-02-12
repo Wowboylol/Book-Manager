@@ -31,7 +31,7 @@
                     </ul>
                 </li>
                 <li [ngClass]="{'mt-2':collapsed, 'mt-1':!collapsed, 'me-1':true, 'ms-2':collapsed}" *ngIf="isAuthenticated">
-                    <a style="cursor: pointer;">Logout</a>
+                    <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
                 </li>
             </ul>
         </article>

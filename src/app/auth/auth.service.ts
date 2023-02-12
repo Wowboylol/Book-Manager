@@ -4,6 +4,7 @@ import { catchError, tap } from "rxjs";
 import { throwError } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
+import { Router } from "@angular/router";
 
 import { environment } from "../../environments/environment";
 import { User } from "./user.model";
@@ -24,7 +25,7 @@ export class AuthService
 {
     public user = new BehaviorSubject<User>(null);
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     public signUp(email: string, password: string)
     {
@@ -58,6 +59,12 @@ export class AuthService
                 this.handleUserData(resData.localId, resData.email, resData.idToken, +resData.expiresIn);
             })
         );
+    }
+
+    public logout()
+    {
+        this.user.next(null);
+        this.router.navigate(['/auth']);
     }
 
     private handleUserData(userId: string, email: string, token: string, expiresIn: number)
