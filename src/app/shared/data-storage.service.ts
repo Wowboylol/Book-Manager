@@ -17,7 +17,7 @@ export class DataStorageService
     {
         const books = this.bookService.getBooks().reverse();
         this.http.put(
-            environment.firebase, 
+            environment.firebase + this.authService.user.value.id + '.json', 
             books
         )
         .subscribe(response => {
@@ -28,9 +28,10 @@ export class DataStorageService
     public fetchBooks()
     {
         return this.http.get<Book[]>(
-            environment.firebase
+            environment.firebase + this.authService.user.value.id + '.json',
         ).pipe(
             map(books => {
+                if(!books) return [];
                 return books.map(book => {
                     return {...book, tags: book.tags ? book.tags:[]};
                 });
