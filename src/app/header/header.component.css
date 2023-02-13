@@ -1,0 +1,23 @@
+.visible {
+    animation: movein 0.5s ease forwards, moveout 0.5s 4s ease forwards;
+}
+
+#notif {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 92vh;
+    left: -450px;
+}
+
+@keyframes movein {
+    from { left: -450px; }
+    to   { left: 10px; }
+}
+  
+@keyframes moveout {
+    from { left: 10px; }
+    to   { left: -450px; }
+}
