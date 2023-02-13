@@ -37,7 +37,7 @@ export class DataStorageService
                 });
             }),
             tap(books => {
-                this.bookService.setBooks(books);
+                this.bookService.replaceBooks(books);
             })
         );
     }

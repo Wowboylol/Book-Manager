@@ -34,6 +34,18 @@ export class BookService
 		this.booksChanged.next(this.books.slice());
 	}
 
+	public replaceBooks(books:Book[])
+	{
+		this.books = [];
+		this.tagService.resetTags();
+		for(let book of books)
+		{
+			book.tags = this.tagService.addMultipleTags(book.tags.slice());
+			this.books.unshift(book);
+		}
+		this.booksChanged.next(this.books.slice());
+	}
+
 	public updateBook(index:number, newBook:Book) 
 	{ 
 		// Decrease tag amount for deleted book

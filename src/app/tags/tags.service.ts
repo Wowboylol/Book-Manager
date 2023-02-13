@@ -100,6 +100,12 @@ export class TagService
         else return false;
     }
 
+    public resetTags() 
+    { 
+        this.tags = [];
+        this.tagChange.emit(this.tags.slice()); 
+    }
+
     public getTags():Tag[] { return this.tags.slice(); }
     public getTag(index:number):Tag { return this.tags[index]; }
 }
