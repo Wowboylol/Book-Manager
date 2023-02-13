@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
+import { BookService } from '../books/book.service';
 
 @Component({
     selector: 'app-header',
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy
     public message = "";
 
     // Methods
-    constructor(private dataStorage:DataStorageService, private authService:AuthService) { }
+    constructor(private dataStorage:DataStorageService, private authService:AuthService, private bookService:BookService) { }
 
     ngOnInit() 
     { 
@@ -37,9 +38,16 @@ export class HeaderComponent implements OnInit, OnDestroy
 
     public onSaveData() 
     { 
-        if(this.onCooldown() == false)
+        if(this.bookService.getBooks().length == 0)
+        {
+            this.error = true;
+            this.success = false;
+            this.message = "There are no books to save!";
+        }
+        else if(this.onCooldown() == false)
         {
             this.success = true;
+            this.error = false;
             this.message = "Books saved successfully!";
             this.timer = setTimeout(() => { this.timer = null; this.success = false; this.error = false; }, 5000);
             this.dataStorage.storeBooks(); 
@@ -51,6 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy
         if(this.onCooldown() == false)
         {
             this.success = true;
+            this.error = false;
             this.message = "Books fetched successfully!";
             this.timer = setTimeout(() => { this.timer = null; this.success = false; this.error = false; }, 5000);
             this.dataStorage.fetchBooks().subscribe(); 
