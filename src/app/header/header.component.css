@@ -8,7 +8,7 @@
     align-items: center;
     position: fixed;
     z-index: 999;
-    top: 92vh;
+    bottom: 2px;
     left: -450px;
 }
 
