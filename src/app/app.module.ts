@@ -24,6 +24,8 @@ import { BookResolverService } from './books/book-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { StatsComponent } from './stats/stats.component';
+import { BookRatingGraphComponent } from './stats/book-rating-graph/book-rating-graph.component';
 
 @NgModule({
 	declarations: [
@@ -41,7 +43,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 		BookDefaultComponent,
 		BookEditComponent,
 		AuthComponent,
-		LoadingSpinnerComponent
+		LoadingSpinnerComponent,
+  StatsComponent,
+  BookRatingGraphComponent
 	],
 	imports: [
 		BrowserModule,

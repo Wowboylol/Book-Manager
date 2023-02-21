@@ -9,6 +9,7 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookResolverService } from './books/book-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { StatsComponent } from './stats/stats.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes:Routes = [
@@ -26,6 +27,7 @@ const appRoutes:Routes = [
     },
 	{ path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
 	{ path: 'tags', component: TagsComponent, canActivate: [AuthGuard] },
+    { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
     { path: 'auth', component: AuthComponent }
 ];
 
