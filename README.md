@@ -1,6 +1,8 @@
 # Book Manager
 
-This application allow users to create, edit, and save personalized lists of books linked to their own registered accounts. Generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9, and hosted on AWS Amplify.
+This application allow users to create, edit, and save personalized lists of books linked to their own registered accounts. Generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9, and hosted on AWS Amplify. To try out this applicaiton, click the link on this github repo page and enter the following email and password:
+- Email: test@test.com
+- Password: @test123
 
 ## Features
 - Register and create your own account
