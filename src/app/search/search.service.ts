@@ -46,10 +46,16 @@ export class SearchService
                 break;
             }
             case "Tags": {
+                const multipleTags = searchQuery.split(",");
+                const trimmedTags = multipleTags.map(tag => tag.trim());
                 for(let book of books)
                 {
-                    if(this.bookService.checkIfBookHasTag(book, searchQuery.toLowerCase()) == true)
-                        this.searchResult.push(book);
+                    let missingTags = false;
+                    for(let tag of trimmedTags)
+                    {
+                        if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == false) { missingTags = true; break; }
+                    }
+                    if(missingTags == false) { this.searchResult.push(book); }
                 }
             }
         }
