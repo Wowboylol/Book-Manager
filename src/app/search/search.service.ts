@@ -53,7 +53,11 @@ export class SearchService
                     let missingTags = false;
                     for(let tag of trimmedTags)
                     {
-                        if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == false) { missingTags = true; break; }
+                        if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == false) 
+                        { 
+                            missingTags = true; 
+                            break; 
+                        }
                     }
                     if(missingTags == false) { this.searchResult.push(book); }
                 }
