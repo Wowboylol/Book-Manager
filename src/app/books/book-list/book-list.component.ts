@@ -102,8 +102,6 @@ export class BookListComponent implements OnInit, OnDestroy
 		if(this.displaySearchResults) 
 		{
 			this._bookIndexes = this.searchService.searchResultIndexes;
-
-			if(this.isBookOverLimit()) this._bookIndexes.length = this.bookDisplayLimit;
 		}
 		else
 		{
