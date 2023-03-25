@@ -84,7 +84,7 @@ export class BookListComponent implements OnInit, OnDestroy
 	// Returns true if the amount of books is over the display limit
 	public isBookOverLimit():boolean
 	{
-		if(this.searchService.searchResultIndexes.length <= this.bookDisplayLimit && this.displaySearchResults) return false;
+		if(this.displaySearchResults) return false;
 		if(this._books.length > this.bookDisplayLimit) return true;
 		return false;
 	}
