@@ -3,7 +3,9 @@
         <app-book-list></app-book-list>
     </article>
     
-    <article class="col-md-7 ps-4">
+    <article class="col-md-7 ps-4" id="scroll-target">
         <router-outlet></router-outlet>
     </article>
 </section>
+
+<button class="btn btn-secondary" id="scroll-down" (click)="onScrollDown()"></button>

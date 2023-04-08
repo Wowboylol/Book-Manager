@@ -27,4 +27,10 @@ export class BooksComponent implements OnInit
 
 	public get bookDetails():Book { return this._bookDetails; }
 	public set bookDetails(selection:Book) { this._bookDetails = selection; }
+
+	public onScrollDown()
+	{
+		var toView = document.getElementById("scroll-target");
+		toView.scrollIntoView(); 
+	}
 }
