@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { Tag } from "../shared/tag.model";
 import { TagService } from "../tags/tags.service";
 import { Book } from "./book.model";
 

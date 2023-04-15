@@ -1,6 +1,6 @@
 import { EventEmitter } from "@angular/core";
 import { Subject } from "rxjs";
-import { Tag } from "../shared/tag.model";
+import { Tag } from "./tag.model";
 
 export class TagService
 {

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Tag } from 'src/app/shared/tag.model';
+import { Tag } from 'src/app/tags/tag.model';
 import { TagService } from '../tags.service';
 
 @Component({

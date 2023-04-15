@@ -38,7 +38,7 @@ testem.log
 /typings
 re-add.txt
 ng-book-manager-default-rtdb-export.json
-ng-book-manager-old-rtdb-export.json
+ng-book-manager-new-rtdb-export.json
 src/environments/
 
 # System files

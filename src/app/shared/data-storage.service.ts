@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { map, tap, take, exhaustMap } from "rxjs/operators";
-import { HttpParams } from "@angular/common/http";
+import { map, tap } from "rxjs/operators";
 
 import { BookService } from "../books/book.service";
 import { Book } from "../books/book.model";

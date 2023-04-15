@@ -26,6 +26,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { StatsComponent } from './stats/stats.component';
 import { BookRatingGraphComponent } from './stats/book-rating-graph/book-rating-graph.component';
+import { TagUsageGraphComponent } from './stats/tag-usage-graph/tag-usage-graph.component';
 
 @NgModule({
 	declarations: [
@@ -44,8 +45,9 @@ import { BookRatingGraphComponent } from './stats/book-rating-graph/book-rating-
 		BookEditComponent,
 		AuthComponent,
 		LoadingSpinnerComponent,
-  StatsComponent,
-  BookRatingGraphComponent
+		StatsComponent,
+		BookRatingGraphComponent,
+  TagUsageGraphComponent
 	],
 	imports: [
 		BrowserModule,

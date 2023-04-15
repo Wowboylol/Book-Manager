@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tag } from '../shared/tag.model';
+import { Tag } from './tag.model';
 import { TagService } from './tags.service';
 
 @Component({

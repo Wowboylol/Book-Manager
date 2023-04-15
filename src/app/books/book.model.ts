@@ -1,4 +1,4 @@
-import { Tag } from "../shared/tag.model";
+import { Tag } from "../tags/tag.model";
 
 export class Book
 {

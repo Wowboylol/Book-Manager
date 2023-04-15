@@ -13,7 +13,7 @@ import { Book } from 'src/app/books/book.model';
 export class BookRatingGraphComponent implements OnInit, OnDestroy
 {
 	// Attributes
-	public barChart: Chart;
+	public bookRatingChart: Chart;
 	private subscription: Subscription;
 
 	// Data
@@ -48,7 +48,7 @@ export class BookRatingGraphComponent implements OnInit, OnDestroy
 
 	public createChart(): void
 	{
-		this.barChart = new Chart('barChart', {
+		this.bookRatingChart = new Chart('bookRatingChart', {
 			type: 'bar',
 			data: {
 				labels: ['0 Star', '1 Star', '2 Star', '3 Star', '4 Star', '5 Star'],
@@ -82,6 +82,10 @@ export class BookRatingGraphComponent implements OnInit, OnDestroy
 				plugins: {
 					legend: {
 						display: false
+					},
+					title: {
+						display: true,
+						text: 'Number of Books by Rating'
 					}
 				}
 			}
@@ -131,7 +135,7 @@ export class BookRatingGraphComponent implements OnInit, OnDestroy
 
 	public updateChart(): void
 	{
-		this.barChart.data.datasets[0].data = [this.zeroStar, this.oneStar, this.twoStar, this.threeStar, this.fourStar, this.fiveStar];
-		this.barChart.update();
+		this.bookRatingChart.data.datasets[0].data = [this.zeroStar, this.oneStar, this.twoStar, this.threeStar, this.fourStar, this.fiveStar];
+		this.bookRatingChart.update();
 	}
 }
