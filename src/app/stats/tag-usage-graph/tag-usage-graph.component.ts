@@ -3,6 +3,7 @@ import { Chart } from 'chart.js/auto';
 import { Subscription } from 'rxjs';
 
 import { TagService } from 'src/app/tags/tags.service';
+import { BookService } from 'src/app/books/book.service';
 import { Tag } from 'src/app/tags/tag.model';
 
 @Component({
@@ -21,7 +22,7 @@ export class TagUsageGraphComponent implements OnInit, OnDestroy
 	private topTags: Tag[] = [];
 
 	// Methods
-	constructor(private tagService:TagService) { }
+	constructor(private tagService:TagService, private bookService:BookService) { }
 
 	ngOnInit(): void 
 	{ 
@@ -104,12 +105,13 @@ export class TagUsageGraphComponent implements OnInit, OnDestroy
 		this.topTags = tags;
 
 		// Calculate metadata
-		if(tags.length == 0) { this.averageTagsPerBook = 0; }
+		let totalTagAmount = 0;
+		let totalBooks = this.bookService.getBooks().length;
+		if(totalBooks == 0) { this.averageTagsPerBook = 0; }
 		else
 		{
-			let totalTagAmount = 0;
 			for(let tag of tags) { totalTagAmount += tag.amount; }
-			this.averageTagsPerBook = Math.round((totalTagAmount / tags.length) * 100) / 100;
+			this.averageTagsPerBook = Math.round((totalTagAmount / totalBooks) * 100) / 100;
 		}
 
 		// Check and adjust if there are less than 10 tags
