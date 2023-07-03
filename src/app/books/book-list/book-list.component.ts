@@ -40,7 +40,8 @@ export class BookListComponent implements OnInit, OnDestroy
 			(books:Book[]) => {
 				this._books = books;
 
-				if(this.isBookOverLimit()) this._bookIndexes = Array.from(Array(this.bookDisplayLimit),(x,i)=>i);
+				if(this.displaySearchResults) return;
+				else if(this.isBookOverLimit()) this._bookIndexes = Array.from(Array(this.bookDisplayLimit),(x,i)=>i);
 				else this._bookIndexes = Array.from(Array(books.length),(x,i)=>i);
 			}
 		);
