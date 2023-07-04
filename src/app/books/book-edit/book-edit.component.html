@@ -76,7 +76,7 @@
                             <option *ngFor="let tag of getAllTags()" [value]="tag.name">{{tag.name}}</option>
                         </datalist>
                     </div>
-                    <div class="col-sm-2 mt-1">
+                    <div class="col-sm-4 mt-1">
                         <button type="button" class="btn btn-danger me-1" (click)="onDeleteTag(i)">X</button>
                         <button type="button" class="btn btn-secondary" (click)="onInsertTag(i)"><i class="fa fa-angle-up"></i></button>
                     </div>
