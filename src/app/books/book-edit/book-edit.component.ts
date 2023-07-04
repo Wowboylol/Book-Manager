@@ -65,6 +65,11 @@ export class BookEditComponent implements OnInit
 		(<FormArray>this.bookForm.get('tags')).removeAt(index);
 	}
 
+	onInsertTag(index:number)
+	{
+		(<FormArray>this.bookForm.get('tags')).insert(index, new FormGroup({'name': new FormControl(null, Validators.required)}));
+	}
+
 	getAllTags()
 	{
 		return this.tagService.getTags();

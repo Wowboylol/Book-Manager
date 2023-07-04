@@ -5,3 +5,7 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
 .img-responsive {
     max-height: 500px;
 }
+
+.fa-angle-up {
+    color: #ffffff;
+}
