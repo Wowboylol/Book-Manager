@@ -38,8 +38,11 @@ export class BookListComponent implements OnInit, OnDestroy
 	{
 		this.subscription = this.bookService.booksChanged.subscribe(
 			(books:Book[]) => {
+				// If book has been deleted, set displaySearchResults to false
+				if(this._books.length > books.length) { this.displaySearchResults = false; }
 				this._books = books;
 
+				// If searching, display search results, else display all books
 				if(this.displaySearchResults) return;
 				else if(this.isBookOverLimit()) this._bookIndexes = Array.from(Array(this.bookDisplayLimit),(x,i)=>i);
 				else this._bookIndexes = Array.from(Array(books.length),(x,i)=>i);
