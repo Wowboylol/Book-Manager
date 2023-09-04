@@ -5,11 +5,14 @@
                 <input 
                     type="text" 
                     id="tag-data-search" 
-                    class="form-control" 
+                    [ngClass]="{'form-control':true, 'is-invalid':!validQuery}"
                     placeholder="Search for tag to query data on..." 
                     list="tagList" 
                     #tagDataQuery
                 >
+                <footer class="invalid-feedback">
+                    Please enter a valid tag.
+                </footer>
                 <datalist id="tagList">
                     <option *ngFor="let tag of getAllTags()" [value]="tag.name">{{tag.name}}</option>
                 </datalist>

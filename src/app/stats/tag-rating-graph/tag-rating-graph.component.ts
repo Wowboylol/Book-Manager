@@ -16,6 +16,7 @@ export class TagRatingGraphComponent implements OnInit
 
 	// Attributes
 	public tagRatingChart: Chart;
+	public validQuery: boolean = true;
 	private queried: boolean = false;
 
 	// Data
@@ -151,7 +152,7 @@ export class TagRatingGraphComponent implements OnInit
 	public onTagDataQuery()
 	{
 		this.chosenTag = this.searchQueryRef.nativeElement.value;
-		this.getAverageTagRating();
+		this.validQuery = this.getAverageTagRating();
 	}
 
 	public getAllTags()
