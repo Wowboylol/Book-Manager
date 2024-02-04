@@ -34,5 +34,14 @@
     <article class="col-xs-12 rounded px-3 pt-3 pb-2">
         <h5>Total Tagged: <strong>{{ totalTagged }}</strong></h5>
         <h5>Average Rating: <strong>{{ averageRating }} </strong><span class="fa fa-star"></span></h5>
+        <h5>
+            <span 
+                id="tag-value-info"
+                class="fa fa-info-circle" 
+                title="Tag Value = average rating with tag - average rating without tag"
+            ></span> 
+            Tag Value: <strong>{{ tagValue }} </strong>
+            <span class="fa fa-star"></span>
+        </h5>
     </article>
 </section>

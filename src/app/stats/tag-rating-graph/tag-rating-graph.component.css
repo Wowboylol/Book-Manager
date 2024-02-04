@@ -1,3 +1,8 @@
 article {
     background-color: #f8f9fa;
 }
+
+#tag-value-info:hover {
+    cursor: pointer;
+    color: grey;
+}

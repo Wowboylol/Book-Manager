@@ -22,6 +22,7 @@ export class TagRatingGraphComponent implements OnInit
 	// Data
 	public totalTagged: number = 0;
 	public averageRating: number = 0;
+	public tagValue: number = 0;
 	private chosenTag: string = '';
 	private zeroStar: number = 0;
 	private oneStar: number = 0;
@@ -115,12 +116,15 @@ export class TagRatingGraphComponent implements OnInit
 		this.fourStar = 0;
 		this.fiveStar = 0;
 
+		// Other data
+		var excludedTotalRating = 0;	// Total rating of books without the chosen tag
+
 		// Count number of books with each rating if it contains the chosen tag
 		for (let book of books)
 		{
 			if (this.bookService.checkIfBookHasTag(book, this.chosenTag))
 			{
-				switch (book.rating)
+				switch(book.rating)
 				{
 					case 0: this.zeroStar++; break;
 					case 1: this.oneStar++; break;
@@ -131,12 +135,16 @@ export class TagRatingGraphComponent implements OnInit
 				}
 				this.totalTagged++;
 			}
+			else {
+				excludedTotalRating += book.rating;
+			}
 		}
 
 		// Calculate metadata
 		if(this.totalTagged == 0)
 		{
 			this.averageRating = 0;
+			this.tagValue = 0;
 		}
 		else
 		{
@@ -145,6 +153,11 @@ export class TagRatingGraphComponent implements OnInit
 					(this.zeroStar * 0 + this.oneStar * 1 + this.twoStar * 2 + 
 						this.threeStar * 3 + this.fourStar * 4 + this.fiveStar * 5) 
 						/ this.totalTagged * 100
+				) / 100;
+			
+			this.tagValue = 
+				Math.round(
+					(this.averageRating - (excludedTotalRating / (books.length - this.totalTagged))) * 100
 				) / 100;
 		}
 	}
