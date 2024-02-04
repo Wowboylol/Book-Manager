@@ -48,18 +48,24 @@ export class SearchService
             case "Tags": {
                 const multipleTags = searchQuery.split(",");
                 const trimmedTags = multipleTags.map(tag => tag.trim());
+
+                const includeTags = [];
+                const excludeTags = [];
+
+                for(let tag of trimmedTags)
+                {
+                    if(tag.startsWith("-")) { excludeTags.push(tag.substring(1)); }
+                    else { includeTags.push(tag); }
+                }
+
                 for(let book of books)
                 {
-                    let missingTags = false;
-                    for(let tag of trimmedTags)
-                    {
-                        if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == false) 
-                        { 
-                            missingTags = true; 
-                            break; 
-                        }
+                    if(
+                        this.checkIfBookIncludesTags(book, includeTags) == true && 
+                        this.checkIfBookExcludesTags(book, excludeTags) == true
+                    ) {
+                        this.searchResult.push(book);
                     }
-                    if(missingTags == false) { this.searchResult.push(book); }
                 }
             }
         }
@@ -67,7 +73,7 @@ export class SearchService
         this.searchChange.emit(this.searchResult.slice());
     }
 
-    // Helper functions
+    // Sorts search result based on searchFilter
     private sortBooks(searchFilter:string)
     {
         switch(searchFilter)
@@ -91,6 +97,24 @@ export class SearchService
                 this.searchResult.reverse();
                 break;
         }
+    }
+
+    // Checks if book contains given list of tags
+    private checkIfBookIncludesTags(book:Book, tags:string[]):boolean
+    {
+        for(let tag of tags) {
+            if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == false) { return false; }
+        }
+        return true;
+    }
+
+    // Checks if book does not contain given list of tags
+    private checkIfBookExcludesTags(book:Book, tags:string[]):boolean
+    {
+        for(let tag of tags) {
+            if(this.bookService.checkIfBookHasTag(book, tag.toLowerCase()) == true) { return false; }
+        }
+        return true;
     }
 
     private toEnumField(searchField:string):string { return SearchField[Number(searchField)-1]; }
