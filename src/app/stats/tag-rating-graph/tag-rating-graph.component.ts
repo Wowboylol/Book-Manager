@@ -34,10 +34,7 @@ export class TagRatingGraphComponent implements OnInit
 	// Methods
 	constructor(private tagService:TagService, private bookService:BookService) { }
 
-	ngOnInit(): void 
-	{
-
-	}
+	ngOnInit(): void {}
 
 	public getAverageTagRating(): boolean
 	{

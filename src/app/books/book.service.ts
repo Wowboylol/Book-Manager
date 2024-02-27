@@ -70,7 +70,7 @@ export class BookService
 	{
 		for(let tag of book.tags)
 		{
-			if(tag.name.toLowerCase() === tagName) { return true; }
+			if(tag.name.toLowerCase() === tagName.toLowerCase()) { return true; }
 		}
 		return false;
 	}
